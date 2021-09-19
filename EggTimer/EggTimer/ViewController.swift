@@ -12,22 +12,39 @@ class ViewController: UIViewController {
     
     let eggTimes = ["Soft": 5, "Medium": 7, "Hard": 12]
     //
+    var originalSeconds = 100
+    var secondsRemaining = 60
     
+    var timer = Timer()
     
+    @IBOutlet weak var progressBard: UIProgressView!
+    
+    @IBOutlet weak var eggLabel: UILabel!
     @IBAction func hardnessSelected(_ sender: UIButton) {
+        progressBard.progress = 100.0
+        timer.invalidate()
+        
+        
         let hardness = sender.currentTitle!
         
-        var time = eggTimes[hardness]!
+        secondsRemaining = eggTimes[hardness]!
+        originalSeconds = secondsRemaining
         
-        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
-            print(time)
-            time -= 1
-            if time == -1 {
-                    timer.invalidate()
-                }
-        }
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        
+        
     }
 
+    @objc func updateTimer(){
+           secondsRemaining -= 1
+        var prog: Float = Float(secondsRemaining)/Float(originalSeconds)
+        progressBard.progress = prog
+           if secondsRemaining == -1 {
+                   timer.invalidate()
+            eggLabel.text = "Done"
+               }
+        
+    }
     
     
 }
