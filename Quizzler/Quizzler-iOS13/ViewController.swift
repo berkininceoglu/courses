@@ -16,18 +16,29 @@ class ViewController: UIViewController {
     @IBOutlet weak var trueButton: UIButton!
     @IBOutlet weak var falseButton: UIButton!
     
-    let questions = ["Four plus four is equal to eight.",
-    "Square of four is fifty-three.",
-    "Root of twenty-five is five."]
+    let questions = [
+    ["Four plus four is equal to eight.", "True"],
+    ["Square of four is fifty-three.", "False"],
+    ["Root of twenty-five is five.", "True"]
+    ]
     
     var questionCounter = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        questionLabel.text = questions[questionCounter]
+        questionLabel.text = questions[questionCounter][0]
     }
 
     @IBAction func answerButtonPressed(_ sender: UIButton) {
+        let userAnwer = sender.currentTitle
+        
+        if(questions[questionCounter][1] == userAnwer){
+            print("right")
+        }
+        else{
+            print("wrong")
+        }
+        
         questionCounter += 1
         if(questionCounter == questions.count){
             questionCounter = 0
@@ -36,7 +47,7 @@ class ViewController: UIViewController {
     }
     
     func updateUI(){
-        questionLabel.text = questions[questionCounter]
+        questionLabel.text = questions[questionCounter][0]
     }
     
 }
