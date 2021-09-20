@@ -16,23 +16,28 @@ class ViewController: UIViewController {
     @IBOutlet weak var trueButton: UIButton!
     @IBOutlet weak var falseButton: UIButton!
     
+    struct question{
+        let title : String
+        let answer : String
+    }
+    
     let questions = [
-    ["Four plus four is equal to eight.", "True"],
-    ["Square of four is fifty-three.", "False"],
-    ["Root of twenty-five is five.", "True"]
+        question(title: "Four plus four is equal to eight.", answer: "True"),
+        question(title: "Square of four is fifty-three.", answer: "False"),
+        question(title: "Root of twenty-five is five.", answer: "True")
     ]
     
     var questionCounter = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        questionLabel.text = questions[questionCounter][0]
+        questionLabel.text = questions[questionCounter].title
     }
 
     @IBAction func answerButtonPressed(_ sender: UIButton) {
         let userAnwer = sender.currentTitle
         
-        if(questions[questionCounter][1] == userAnwer){
+        if(questions[questionCounter].answer == userAnwer){
             print("right")
         }
         else{
@@ -47,7 +52,7 @@ class ViewController: UIViewController {
     }
     
     func updateUI(){
-        questionLabel.text = questions[questionCounter][0]
+        questionLabel.text = questions[questionCounter].title
     }
     
 }
