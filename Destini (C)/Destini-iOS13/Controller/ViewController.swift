@@ -14,15 +14,24 @@ class ViewController: UIViewController {
     @IBOutlet weak var choice1Button: UIButton!
     @IBOutlet weak var choice2Button: UIButton!
     
-    let story = "You see fork in the road"
-    let choice1 = "Take a left"
-    let choice2 = "Take a right"
+    let stories = [Story(
+                    title:"You see fork in the road",
+                    choice1: "Take a left",
+                    choice2: "Take a right"),
+                   Story(
+                       title:"You see knife in the road",
+                       choice1: "Take a left",
+                       choice2: "Take a right"),
+                   Story(
+                       title:"You see spoon in the road",
+                       choice1: "Take a left",
+                       choice2: "Take a right")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        storyLabel.text = story
-        choice1Button.setTitle(choice1, for: .normal)
-        choice2Button.setTitle(choice2, for: .normal)
+        storyLabel.text = stories[0].title
+        choice1Button.setTitle(stories[0].choice1, for: .normal)
+        choice2Button.setTitle(stories[0].choice2, for: .normal)
 
     }
 
