@@ -70,6 +70,9 @@
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="buttonClickedWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QIt-93-PTe"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
