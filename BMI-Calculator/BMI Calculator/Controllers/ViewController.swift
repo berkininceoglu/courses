@@ -40,7 +40,7 @@ class ViewController: UIViewController {
     }
     
     func getBMIValue() -> String{
-        return String(bmiValue)
+        return NSString(format: "%.2f", bmiValue) as String
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
