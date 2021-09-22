@@ -44,6 +44,8 @@ class ViewController: UIViewController {
             let destinationVC = segue.destination as! ResultViewController
             //as! = force downcast
             destinationVC.bmiValue = calculatorBrain.getBMIValue()
+            destinationVC.advice = calculatorBrain.getAdvice()
+            destinationVC.color = calculatorBrain.getColor()
         }
     }
     
