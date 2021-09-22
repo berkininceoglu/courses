@@ -10,10 +10,10 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var heightSlider: UIStackView!
     @IBOutlet weak var heightLabel: UILabel!
-    @IBOutlet weak var weightSlider: UIStackView!
     @IBOutlet weak var weightLabel: UILabel!
+    @IBOutlet weak var heightSlider: UISlider!
+    @IBOutlet weak var weightSlider: UISlider!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,10 +22,17 @@ class ViewController: UIViewController {
 
     @IBAction func sliderChanged(_ sender: UISlider) {
         if(sender.tag == 1){
-            heightLabel.text = NSString(format: "%.2f", sender.value) as String
+            heightLabel.text = NSString(format: "%.2f", sender.value) as String + "m"
         }else{
-            weightLabel.text = NSString(format: "%.0f", sender.value) as String
+            weightLabel.text = NSString(format: "%.0f", sender.value) as String + "Kg"
         }
+    }
+    @IBAction func calculatePressed(_ sender: UIButton) {
+        let height = heightSlider.value
+        let weight = weightSlider.value
+        
+        let bmi = weight / pow(height, 2)
+        print(bmi)
     }
     
 }
