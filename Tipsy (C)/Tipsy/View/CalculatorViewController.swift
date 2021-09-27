@@ -16,9 +16,10 @@ class CalculatorViewController: UIViewController {
     @IBOutlet weak var tenPercentField: UIButton!
     @IBOutlet weak var twentyPercentField: UIButton!
     var bill : Double = 0.0
-    var splitCount : Int = 2
-    var tip : Int = 0
+    var tipPercentage : Int = 0
     var sum : Double = 0.0
+    var splitPerson : Int = 2
+    var splittedValue : Double = 0.0
     
     @IBAction func zeroTipPressed(_ sender: UIButton) {
         clearTipBackgrounds()
@@ -38,8 +39,8 @@ class CalculatorViewController: UIViewController {
     
     
     @IBAction func splitCountChanged(_ sender: UIStepper) {
-        splitCount = Int(sender.value)
-        splitField.text = "\(splitCount)"
+        splitPerson = Int(sender.value)
+        splitField.text = "\(splitPerson)"
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,23 +54,28 @@ class CalculatorViewController: UIViewController {
     }
     
     func setTipValue(p percentage: Int) {
-        tip = percentage
+        tipPercentage = percentage
     }
     
     @IBAction func calculatePressed(_ sender: UIButton) {
         let strNumber1 = billTextField.text ?? "0.0"
         let NSstringFromString = NSString(string: strNumber1)
         bill = NSstringFromString.doubleValue
-        print(bill)
-        
-        let tipValue = bill * Double(tip) / Double(100)
+
+        let tipValue = bill * Double(tipPercentage) / Double(100)
         sum = bill + tipValue
-        print(sum)
         
-        let splittedValue = sum / Double(splitCount)
-        print(splittedValue)
-        
+        splittedValue = sum / Double(splitPerson)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+             if(segue.identifier == "ShowResultsSegue"){
+                 let destinationVC = segue.destination as! ResultViewController
+                 //as! = force downcast
+                destinationVC.splitValue = splittedValue
+                destinationVC.splitPerson = splitPerson
+             }
+         }
     
 }
 
