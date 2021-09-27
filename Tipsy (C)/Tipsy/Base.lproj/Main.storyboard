@@ -74,7 +74,7 @@
                                                             <color key="titleColor" red="0.0" green="0.69019607839999997" blue="0.41960784309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="twentyTipPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="d20-cz-Mgk"/>
+                                                            <action selector="twentyTipPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7N1-b6-SrU"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -179,6 +179,9 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10f"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="calculatePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AdB-A3-dwt"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Ptx-Zl-eGc"/>
@@ -196,8 +199,11 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="billTextFiled" destination="wcN-ka-Q4F" id="jPa-N9-hDK"/>
+                        <outlet property="billTextField" destination="wcN-ka-Q4F" id="jPa-N9-hDK"/>
                         <outlet property="splitField" destination="bSy-Yc-886" id="zaP-Gi-CcZ"/>
+                        <outlet property="tenPercentField" destination="7y6-Kf-yF0" id="lsa-jC-dXH"/>
+                        <outlet property="twentyPercentField" destination="UtR-dU-EKt" id="9Vm-eN-WiX"/>
+                        <outlet property="zeroPercentField" destination="XzR-0E-Xf7" id="wMg-ja-o0c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
