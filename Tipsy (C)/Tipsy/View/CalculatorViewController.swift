@@ -16,7 +16,7 @@ class CalculatorViewController: UIViewController {
     @IBOutlet weak var tenPercentField: UIButton!
     @IBOutlet weak var twentyPercentField: UIButton!
     var bill : Double = 0.0
-    var tipPercentage : Int = 0
+    var tipPercentage : Int = 10
     var sum : Double = 0.0
     var splitPerson : Int = 2
     var splittedValue : Double = 0.0
@@ -61,11 +61,16 @@ class CalculatorViewController: UIViewController {
         let strNumber1 = billTextField.text ?? "0.0"
         let NSstringFromString = NSString(string: strNumber1)
         bill = NSstringFromString.doubleValue
-
+        
         let tipValue = bill * Double(tipPercentage) / Double(100)
+        print(tipValue)
         sum = bill + tipValue
         
+        print(sum)
+        print(Double(splitPerson))
+        print(sum/Double(splitPerson))
         splittedValue = sum / Double(splitPerson)
+        print(splittedValue)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -74,6 +79,7 @@ class CalculatorViewController: UIViewController {
                  //as! = force downcast
                 destinationVC.splitValue = splittedValue
                 destinationVC.splitPerson = splitPerson
+                destinationVC.tipPercentage = tipPercentage
              }
          }
     
