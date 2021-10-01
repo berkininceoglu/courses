@@ -10,10 +10,14 @@ import UIKit
 class DetailViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     var selectedImage: String?
+    var orderCount: Int = 0
+    var totalCount: Int = 0
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = selectedImage
+        title = "\(orderCount+1) of \(totalCount)"
         navigationItem.largeTitleDisplayMode = .never
         
         if let imageToLoad = selectedImage{
