@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var flag3: UIButton!
     
     var countries = [String]()
+    var questionsAnswered: Int = 0
     var score = 0
     var correctAnswer = 0
     
@@ -44,8 +45,26 @@ countries += ["estonia", "france", "germany", "italy", "ireland", "monaco", "nig
         
         title = countries[correctAnswer].uppercased() + " - Score: \(score)"
     }
+    
+    func restartGame(action: UIAlertAction! = nil){
+        score = 0
+        questionsAnswered=0
+        
+        askQuestion()
+    }
 
     @IBAction func buttonTapped(_ sender: UIButton) {
+        let questionLimit: Int = 10
+        questionsAnswered += 1
+        
+        if(questionsAnswered == questionLimit){
+            let ac = UIAlertController(title: title, message: "Final score is \(score) out of \(questionLimit).", preferredStyle: .alert)
+            
+            ac.addAction(UIAlertAction(title: "Restart", style: .default, handler: restartGame))
+            
+            present(ac,animated: true)
+
+        }
         if(sender.tag == correctAnswer)
         {
             title = "Correct"
