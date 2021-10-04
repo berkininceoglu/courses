@@ -42,7 +42,7 @@ countries += ["estonia", "france", "germany", "italy", "ireland", "monaco", "nig
         
         flag3.setImage(UIImage(named: countries[2]), for: .normal)
         
-        title = countries[correctAnswer].uppercased()
+        title = countries[correctAnswer].uppercased() + " - Score: \(score)"
     }
 
     @IBAction func buttonTapped(_ sender: UIButton) {
