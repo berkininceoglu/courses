@@ -71,7 +71,7 @@ countries += ["estonia", "france", "germany", "italy", "ireland", "monaco", "nig
             score += 1
         }
         else{
-            title = "Wrong"
+            title = "Wrong! That is the flag of \(countries[sender.tag].uppercased())"
             score -= 1
         }
         
