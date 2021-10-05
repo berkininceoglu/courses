@@ -32,6 +32,8 @@ countries += ["estonia", "france", "germany", "italy", "ireland", "monaco", "nig
         flag2.layer.borderColor = UIColor.lightGray.cgColor
         flag3.layer.borderColor = UIColor.lightGray.cgColor
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareScore))
+        
     }
     
     func askQuestion(action: UIAlertAction! = nil){
@@ -80,6 +82,13 @@ countries += ["estonia", "france", "germany", "italy", "ireland", "monaco", "nig
         ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
         
         present(ac,animated: true)
+    }
+    
+    @objc func shareScore() {
+        let message = "My score is \(score). I challenge you to beat me!"
+        let vc = UIActivityViewController(activityItems: [message], applicationActivities: [])
+        vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        present(vc, animated: true)
     }
 }
 
