@@ -16,6 +16,9 @@ class ViewController: UITableViewController {
         title = "StormViewer"
         navigationController?.navigationBar.prefersLargeTitles = true
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareApp))
+
+        
         let fm = FileManager.default
         let path = Bundle.main.resourcePath!
         let items = try! fm.contentsOfDirectory(atPath: path)
@@ -47,6 +50,18 @@ class ViewController: UITableViewController {
             navigationController?.pushViewController(vc, animated: true)
         }
        
+    }
+    
+    @objc func shareApp() {
+        guard let name = URL(string: "https://apps.apple.com/tr/app/whatsapp-messenger/id310633997")
+        else{
+            print("App could not be found!")
+            return
+        }
+        
+        let vc = UIActivityViewController(activityItems: [name], applicationActivities: [])
+        vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        present(vc, animated: true)
     }
 
 }
