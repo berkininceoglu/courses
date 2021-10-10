@@ -8,17 +8,35 @@
 import UIKit
 
 class FlagViewController: UIViewController {
-
-    var selectedImage: String = ""
+    @IBOutlet weak var detailedImage: UIImageView!
     
+    var selectedImage: String?
     
     override func viewDidLoad() {
-        print("inside flag view controller")
         super.viewDidLoad()
+        if let image = selectedImage{
+            detailedImage.image = UIImage(named: image)
+            detailedImage.layer.borderWidth = 1
+            detailedImage.layer.borderColor = UIColor.black.cgColor
+        }
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))
 
-        // Do any additional setup after loading the view.
+        
     }
     
+    @objc func shareTapped(){
+        guard let image = detailedImage.image?.jpegData(compressionQuality: 0.8)
+        else{
+            print("No image found!")
+            return
+        }
+        let message = selectedImage!
+        print(image)
+        let vc = UIActivityViewController(activityItems: [image], applicationActivities: [])
+        vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        present(vc, animated: true)
+    }
 
     /*
     // MARK: - Navigation
