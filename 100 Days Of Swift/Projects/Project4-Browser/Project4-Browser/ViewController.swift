@@ -11,7 +11,8 @@ import WebKit
 class ViewController: UIViewController, WKNavigationDelegate {
     var webView: WKWebView!
     var progressView: UIProgressView!
-    var webSites = ["apple.com", "hackingwithswift.com"]
+    var webSites = ["apple.com", "hackingwithswift.com", "transferkmarkt.de"]
+    var safeSites = ["apple.com", "hackingwithswift.com"]
     
     override func loadView() {
         webView = WKWebView()
@@ -74,15 +75,26 @@ class ViewController: UIViewController, WKNavigationDelegate {
         let url = navigationAction.request.url
         
         if let host = url?.host{
-            for website in webSites{
+            for website in safeSites{
                 if host.contains(website){
                     decisionHandler(.allow)
                     return
                 }
             }
+           
+        }
+        decisionHandler(.cancel)
+
+        if(url != URL(string: "about:blank")){
+            
+                let alert = UIAlertController(title: "Restricted", message: "This site is blocked!", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
         }
         
-        decisionHandler(.cancel)
+        
+       
+        
         
     }
 
