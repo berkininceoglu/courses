@@ -62,9 +62,6 @@ class ViewController: UITableViewController {
     func submit(_ answer: String){
         let lowerAnswer = answer.lowercased()
         
-        let errorTitle : String
-        let errorMessage : String
-        
         if isPossible(word: lowerAnswer){
             if isOriginal(word: lowerAnswer){
                 if isReal(word: lowerAnswer){
@@ -77,23 +74,17 @@ class ViewController: UITableViewController {
                     return
                 }
                 else{
-                    errorTitle = "Word is not recognized!"
-                    errorMessage = "You cannot just make words up."
+                    showError(et: "Word is not recognized!", em: "You cannot just make words up.")
                 }
             }
             else{
-                errorTitle = "Word already used!"
-                errorMessage = "Be more original."
-                
+                showError(et: "Word already used!", em: "Be more original.")
             }
         }else{
-            errorTitle = "Word is not possible!"
-            errorMessage = "You cannot spell that word from \(title!.lowercased())."
+            showError(et: "Word is not possible!", em: "You cannot spell that word from \(title!.lowercased()).")
         }
         
-        let ac = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .cancel))
-        present(ac, animated: true)
+        
     }
     
     func isPossible(word : String) -> Bool{
@@ -124,6 +115,12 @@ class ViewController: UITableViewController {
         let range = NSRange(location: 0, length: word.utf16.count)
         let misspelledRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
         return misspelledRange.location == NSNotFound
+    }
+    
+    func showError(et errorTitle: String, em errorMessage: String ){
+        let ac = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .cancel))
+        present(ac, animated: true)
     }
 
 
