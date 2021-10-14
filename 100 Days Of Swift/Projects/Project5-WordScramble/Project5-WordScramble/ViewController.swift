@@ -16,6 +16,8 @@ class ViewController: UITableViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(promptForAnswer))
         
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(restartGame))
+        
         if let startWordsURL = Bundle.main.url(forResource: "start", withExtension: "txt"){
             if let startWords = try? String(contentsOf: startWordsURL){
                 allWords = startWords.components(separatedBy: "\n")
@@ -57,6 +59,12 @@ class ViewController: UITableViewController {
         
         ac.addAction(submitAction)
         present(ac, animated: true)
+    }
+    
+    @objc func restartGame(){
+        usedWords = []
+        tableView.reloadData()
+        title = allWords.randomElement()
     }
     
     func submit(_ answer: String){
