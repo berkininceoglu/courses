@@ -16,7 +16,7 @@ class TableViewController: UITableViewController {
         // Do any additional setup after loading the view.
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addItem))
-
+        
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(clearList))
         
     }
@@ -27,14 +27,31 @@ class TableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "item", for: indexPath)
-               cell.textLabel?.text = shoppingList[indexPath.row]
-               return cell
+        cell.textLabel?.text = shoppingList[indexPath.row]
+        return cell
+    }
+    
+    func submit(_ item: String){
+        shoppingList.insert(item, at: 0)
+        tableView.reloadData()
     }
     
     
     @objc func addItem(){
-        shoppingList.append("new item")
-        tableView.reloadData()
+        
+        let ac = UIAlertController(title: "Add new item!", message: "Enter the item name you want to add to list.", preferredStyle: .alert)
+        ac.addTextField()
+        
+        let submitAction = UIAlertAction(title: "Submit", style: .default){
+            [weak self, weak ac] _ in
+            guard let answer = ac?.textFields?[0].text else { return }
+            self?.submit(answer)
+        }
+        
+        ac.addAction(submitAction)
+        present(ac, animated: true)
+        
+        
     }
     
     @objc func clearList(){
@@ -42,7 +59,7 @@ class TableViewController: UITableViewController {
         tableView.reloadData()
     }
     
-
-
+    
+    
 }
 
