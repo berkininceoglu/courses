@@ -15,9 +15,13 @@ class TableViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addItem))
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addItem))
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(clearList))
+        
+        let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareList))
+        
+        navigationItem.rightBarButtonItems = [addButton, shareButton]
         
     }
     
@@ -52,6 +56,14 @@ class TableViewController: UITableViewController {
         present(ac, animated: true)
         
         
+    }
+    
+    @objc func shareList(){
+        let list = shoppingList.joined(separator: "\n")
+        
+        let vc = UIActivityViewController(activityItems: [list], applicationActivities: [])
+        vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        present(vc, animated: true)
     }
     
     @objc func clearList(){
