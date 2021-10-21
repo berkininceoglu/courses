@@ -22,14 +22,34 @@ class DetailViewController: UIViewController {
         guard let detailItem = detailItem else { return }
         
         let html = """
-        <html>
-        <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style> body { font-size: 150%; } </style>
-        </head>
-        <body>
-        \(detailItem.body)
-        </body>
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="utf-8" />
+                <style type="text/css">
+                    body{
+                        font-family:"Helvetica Neue UltraLight",helvetica,verdana;
+                        margin-left:0;
+                        margin-right:0;
+                    }
+                    section{
+                        padding-left:5px;
+                        padding-right:5px;
+                        font-size:45px;
+                    }
+                    h1{
+                        font-size: 65px;
+                        padding-left:5px;
+                    }
+
+                </style>
+            </head>
+            <body>
+               <h1>\(detailItem.title)</h1>
+               <section>
+                    <p>\(detailItem.body)</p>
+               </section>
+            </body>
         </html>
         """
         
