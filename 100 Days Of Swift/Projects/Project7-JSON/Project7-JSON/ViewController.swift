@@ -9,15 +9,22 @@ import UIKit
 
 class ViewController: UITableViewController {
     var petitions = [Petition]()
+    var constantPetitions = [Petition]()
+    var filteredPetitions = [Petition]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(moreButtonClicked))
+        let moreButton = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(moreButtonClicked))
+        
+        let searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonClicked))
+        
+        navigationItem.setRightBarButtonItems([moreButton,searchButton], animated: true)
         
         let urlString: String
         if navigationController?.tabBarItem.tag == 0 {
             urlString =
-        "https://www.hackingwithswift.com/samples/petitions-1.json"
+                "https://www.hackingwithswift.com/samples/petitions-1.json"
         } else {
             urlString = "https://www.hackingwithswift.com/samples/petitions-2.json"
         }
@@ -43,6 +50,7 @@ class ViewController: UITableViewController {
         
         if let jsonPetitions = try? decoder.decode(Petitions.self, from: json){
             petitions = jsonPetitions.results
+            constantPetitions = petitions
             tableView.reloadData()
         }
     }
@@ -69,8 +77,34 @@ class ViewController: UITableViewController {
         let alert = UIAlertController(title: "Source", message: "Data come from the We The People API of the Whitehhouse.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
+    }
+    
+    @objc func searchButtonClicked(){
+        let ac = UIAlertController(title: "Search", message: "Enter the word you want to filter.", preferredStyle: .alert)
+        ac.addTextField()
+        let submitAction = UIAlertAction(title: "Submit", style: .default){
+            [weak self, weak ac] _ in
+            guard let query = ac?.textFields?[0].text else { return }
+            self?.submitSearch(query: query)
+        }
+        
+        ac.addAction(submitAction)
+        present(ac, animated: true)
+    }
+    
+    func submitSearch(query: String){
+        if(query.isEmpty){
+            petitions = constantPetitions
+            tableView.reloadData()
+        }else{
+            filteredPetitions = petitions.filter({
+            $0.title.lowercased().contains(query.lowercased())
+            })
+            petitions = filteredPetitions
+            tableView.reloadData()
+        }
         
     }
-
+    
 }
 
