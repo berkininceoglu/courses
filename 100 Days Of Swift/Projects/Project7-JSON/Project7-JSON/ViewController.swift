@@ -12,6 +12,8 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(moreButtonClicked))
+        
         let urlString: String
         if navigationController?.tabBarItem.tag == 0 {
             urlString =
@@ -61,6 +63,13 @@ class ViewController: UITableViewController {
         let vc =  DetailViewController()
         vc.detailItem = petitions[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc func moreButtonClicked(){
+        let alert = UIAlertController(title: "Source", message: "Data come from the We The People API of the Whitehhouse.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+        
     }
 
 }
