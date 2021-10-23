@@ -112,7 +112,7 @@ class ViewController: UIViewController {
             for column in 0..<5{
                 let letterButton = UIButton(type: .system)
                 letterButton.titleLabel?.font = UIFont.systemFont(ofSize: 36)
-                letterButton.setTitle("WWWW", for: .normal)
+                letterButton.setTitle("", for: .normal)
                 letterButton.addTarget(self, action: #selector(letterTapped), for: .touchUpInside)
                 
                 let frame = CGRect(x: column * width, y: row * height, width: width, height: height)
@@ -135,15 +135,52 @@ class ViewController: UIViewController {
     }
     
     @objc func letterTapped(_ sender: UIButton){
+        guard let buttonTitle = sender.titleLabel?.text else { return }
         
+        currentAnswer.text = currentAnswer?.text?.appending(buttonTitle)
+        activatedButtons.append(sender)
+        sender.isHidden = true
     }
     
     @objc func submitTapped(_ sender: UIButton){
+        guard let answerText = currentAnswer.text else { return }
+        if let solutionPoisition = solutions.firstIndex(of: answerText){
+            activatedButtons.removeAll()
+            
+            var splitAnswers = answersLabel.text?.components(separatedBy: "\n")
+            splitAnswers?[solutionPoisition] = answerText
+            answersLabel.text = splitAnswers?.joined(separator: "\n")
+            
+            currentAnswer.text = ""
+            score += 1
+            
+            if score % 7 == 0 {
+                let ac = UIAlertController(title: "Well Done!", message: "Ready for next level?", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "Let's go.", style: .default, handler: levelUp))
+                present(ac, animated: true)
+            }
+        }
+    }
+    
+    func levelUp(action: UIAlertAction){
+        level += 1
+        
+        solutions.removeAll(keepingCapacity: true)
+        loadLevel()
+        
+        for button in letterButtons {
+            button.isHidden = false
+        }
         
     }
     
     @objc func clearTapped(_ sender: UIButton){
+        currentAnswer.text = ""
+        for button in activatedButtons{
+            button.isHidden = false
+        }
         
+        activatedButtons.removeAll()
     }
     
     func loadLevel(){
