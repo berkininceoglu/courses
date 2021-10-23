@@ -96,11 +96,11 @@ class ViewController: UIViewController {
                 
                 submit.topAnchor.constraint(equalTo: currentAnswer.bottomAnchor),
                 submit.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -100),
-                submit.heightAnchor.constraint(equalToConstant: 44),
+                submit.heightAnchor.constraint(equalToConstant: 77),
                 
                 clear.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 100),
                 clear.centerYAnchor.constraint(equalTo: submit.centerYAnchor),
-                clear.heightAnchor.constraint(equalToConstant: 44),
+                clear.heightAnchor.constraint(equalToConstant: 77),
                 
                 buttonsView.widthAnchor.constraint(equalToConstant: 750),
                 buttonsView.heightAnchor.constraint(equalToConstant: 350),
@@ -116,6 +116,8 @@ class ViewController: UIViewController {
             for column in 0..<5{
                 let letterButton = UIButton(type: .system)
                 letterButton.titleLabel?.font = UIFont.systemFont(ofSize: 36)
+                letterButton.layer.borderColor = UIColor.black.cgColor
+                letterButton.layer.borderWidth = 0.3
                 letterButton.setTitle("", for: .normal)
                 letterButton.addTarget(self, action: #selector(letterTapped), for: .touchUpInside)
                 
