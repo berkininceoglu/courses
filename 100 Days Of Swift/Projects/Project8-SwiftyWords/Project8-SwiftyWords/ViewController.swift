@@ -70,7 +70,7 @@ class ViewController: UIViewController {
         let clear = UIButton(type: .system)
         clear.translatesAutoresizingMaskIntoConstraints = false
         clear.setTitle("CLEAR", for: .normal)
-        submit.addTarget(self, action: #selector(clearTapped), for: .touchUpInside)
+        clear.addTarget(self, action: #selector(clearTapped), for: .touchUpInside)
         view.addSubview(clear)
         
         let buttonsView = UIView()
@@ -165,6 +165,10 @@ class ViewController: UIViewController {
                 ac.addAction(UIAlertAction(title: "Let's go.", style: .default, handler: levelUp))
                 present(ac, animated: true)
             }
+        }else{
+            let ac = UIAlertController(title: "Wrong answer!", message: "Please try again.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default, handler: wrongAnswerGiven))
+            present(ac, animated: true)
         }
     }
     
@@ -178,6 +182,15 @@ class ViewController: UIViewController {
             button.isHidden = false
         }
         
+    }
+    
+    func wrongAnswerGiven(action: UIAlertAction){
+        currentAnswer.text = ""
+        for button in activatedButtons{
+            button.isHidden = false
+        }
+        
+        activatedButtons.removeAll()
     }
     
     @objc func clearTapped(_ sender: UIButton){
