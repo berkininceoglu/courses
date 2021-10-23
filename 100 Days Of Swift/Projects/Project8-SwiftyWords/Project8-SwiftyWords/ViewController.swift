@@ -160,7 +160,7 @@ class ViewController: UIViewController {
             currentAnswer.text = ""
             score += 1
             
-            if score % 7 == 0 {
+            if (letterButtons.allSatisfy { $0.isHidden == true }){
                 let ac = UIAlertController(title: "Well Done!", message: "Ready for next level?", preferredStyle: .alert)
                 ac.addAction(UIAlertAction(title: "Let's go.", style: .default, handler: levelUp))
                 present(ac, animated: true)
@@ -185,6 +185,7 @@ class ViewController: UIViewController {
     }
     
     func wrongAnswerGiven(action: UIAlertAction){
+        score -= 1
         currentAnswer.text = ""
         for button in activatedButtons{
             button.isHidden = false
