@@ -34,19 +34,21 @@ class ViewController: UITableViewController {
             if let url = URL(string: urlString){
                 if let data = try? Data(contentsOf: url){
                     self?.parse(json: data)
-                    return
-                }
+                    return                }
             }
+            self?.showError()
         }
         
-        
-        showError()
     }
     
     func showError(){
-        let ac = UIAlertController(title: "Loading error!", message: "There was a problem loading a feed. Please check your connection and try again.", preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .default))
-        present(ac, animated: true)
+        DispatchQueue.main.async {
+            [weak self] in
+            let ac = UIAlertController(title: "Loading error!", message: "There was a problem loading a feed. Please check your connection and try again.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            self?.present(ac, animated: true)
+        }
+        
     }
     
     func parse(json: Data){
@@ -55,7 +57,11 @@ class ViewController: UITableViewController {
         if let jsonPetitions = try? decoder.decode(Petitions.self, from: json){
             petitions = jsonPetitions.results
             constantPetitions = petitions
-            tableView.reloadData()
+            DispatchQueue.main.async {
+                [weak self] in
+                self?.tableView.reloadData()
+            }
+            
         }
     }
     
