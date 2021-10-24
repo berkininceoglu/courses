@@ -21,34 +21,32 @@ class ViewController: UITableViewController {
         
         navigationItem.setRightBarButtonItems([moreButton,searchButton], animated: true)
         
+        performSelector(inBackground: #selector(fetchJSON), with: nil)
+    }
+    
+    @objc func fetchJSON(){
         let urlString: String
         if navigationController?.tabBarItem.tag == 0 {
             urlString =
-                "https://www.hackingwithswift.com/samples/petitions-1.json"
+            "https://www.hackingwithswift.com/samples/petitions-1.json"
         } else {
             urlString = "https://www.hackingwithswift.com/samples/petitions-2.json"
         }
         
-        DispatchQueue.global(qos: .userInitiated).async {
-            [weak self] in
-            if let url = URL(string: urlString){
-                if let data = try? Data(contentsOf: url){
-                    self?.parse(json: data)
-                    return                }
+        if let url = URL(string: urlString){
+            if let data = try? Data(contentsOf: url){
+                parse(json: data)
+                return
             }
-            self?.showError()
         }
         
+        performSelector(onMainThread: #selector(showError), with: nil, waitUntilDone: false)
     }
     
-    func showError(){
-        DispatchQueue.main.async {
-            [weak self] in
-            let ac = UIAlertController(title: "Loading error!", message: "There was a problem loading a feed. Please check your connection and try again.", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "OK", style: .default))
-            self?.present(ac, animated: true)
-        }
-        
+    @objc func showError(){
+        let ac = UIAlertController(title: "Loading error!", message: "There was a problem loading a feed. Please check your connection and try again.", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        present(ac, animated: true)
     }
     
     func parse(json: Data){
@@ -57,11 +55,9 @@ class ViewController: UITableViewController {
         if let jsonPetitions = try? decoder.decode(Petitions.self, from: json){
             petitions = jsonPetitions.results
             constantPetitions = petitions
-            DispatchQueue.main.async {
-                [weak self] in
-                self?.tableView.reloadData()
-            }
-            
+            tableView?.performSelector(onMainThread: #selector(UITableView.reloadData), with: nil, waitUntilDone: false)
+        }else {
+            performSelector(onMainThread: #selector(showError), with: nil, waitUntilDone: false)
         }
     }
     
@@ -108,7 +104,7 @@ class ViewController: UITableViewController {
             tableView.reloadData()
         }else{
             filteredPetitions = petitions.filter({
-            $0.title.lowercased().contains(query.lowercased())
+                $0.title.lowercased().contains(query.lowercased())
             })
             petitions = filteredPetitions
             tableView.reloadData()
