@@ -18,19 +18,27 @@ class ViewController: UITableViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareApp))
 
-        
+        performSelector(inBackground: #selector(loadPictures), with: nil)
+    }
+    
+    @objc func loadPictures() {
         let fm = FileManager.default
+        
         let path = Bundle.main.resourcePath!
         let items = try! fm.contentsOfDirectory(atPath: path)
         
-        for item in items{
-            if item.hasPrefix("nssl"){
+        for item in items {
+            if item.hasPrefix("nssl") {
                 pictures.append(item)
             }
         }
-        
         pictures.sort()
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
+        
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return pictures.count
