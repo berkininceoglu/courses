@@ -24,7 +24,7 @@ class ViewController: UITableViewController {
         let urlString: String
         if navigationController?.tabBarItem.tag == 0 {
             urlString =
-                "https://www.hackingwithswift.com/samples/petitions-1.json"
+            "https://www.hackingwithswift.com/samples/petitions-1.json"
         } else {
             urlString = "https://www.hackingwithswift.com/samples/petitions-2.json"
         }
@@ -80,28 +80,33 @@ class ViewController: UITableViewController {
     }
     
     @objc func searchButtonClicked(){
-        let ac = UIAlertController(title: "Search", message: "Enter the word you want to filter.", preferredStyle: .alert)
+        let ac = UIAlertController(title: "Search", message: "Enter the word you want to filter. Enter empty for clearing results.", preferredStyle: .alert)
         ac.addTextField()
         let submitAction = UIAlertAction(title: "Submit", style: .default){
             [weak self, weak ac] _ in
             guard let query = ac?.textFields?[0].text else { return }
-            self?.submitSearch(query: query)
+            DispatchQueue.global().async {
+                self?.filterPetitions(query: query)
+                
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                }
+            }
+            
         }
         
         ac.addAction(submitAction)
         present(ac, animated: true)
     }
     
-    func submitSearch(query: String){
+    func filterPetitions(query: String){
         if(query.isEmpty){
             petitions = constantPetitions
-            tableView.reloadData()
         }else{
             filteredPetitions = petitions.filter({
-            $0.title.lowercased().contains(query.lowercased())
+                $0.title.lowercased().contains(query.lowercased())
             })
             petitions = filteredPetitions
-            tableView.reloadData()
         }
         
     }
