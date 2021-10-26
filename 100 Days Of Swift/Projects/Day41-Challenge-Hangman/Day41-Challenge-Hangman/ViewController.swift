@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     var letterButtons = [UIButton]()
     var allWords = [String]()
     var answer: String!
+    var revealedChars = [Character]()
     var maskedWord: String = ""
     
     override func loadView(){
@@ -33,7 +34,7 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate(
             [
                 wordAsked.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                wordAsked.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
+                wordAsked.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.6),
                 wordAsked.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
                 
                 buttonsView.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.9, constant: 35),
@@ -69,39 +70,53 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         if let startWordsURL = Bundle.main.url(forResource: "start", withExtension: "txt"){
-                    if let startWords = try? String(contentsOf: startWordsURL){
-                        allWords = startWords.components(separatedBy: "\n")
-                    }
-                }
-                
-                if allWords.isEmpty{
-                    allWords = ["silkworm"]
-                }
+            if let startWords = try? String(contentsOf: startWordsURL){
+                allWords = startWords.components(separatedBy: "\n")
+            }
+        }
+        
+        if allWords.isEmpty{
+            allWords = ["silkworm"]
+        }
         
         let number = Int.random(in: 0..<allWords.count)
         answer = allWords[number]
-        
+        print(answer)
         for _ in 0..<answer.count{
-            maskedWord += "*"
+            maskedWord += "?"
         }
-        
-        
         wordAsked.text = maskedWord
         
-            for (index,char) in "ABCDEFGHIJKLMNOPQRSTUVWXYZ".enumerated() {
-                letterButtons[index].setTitle(String(char), for: .normal)
-            }
-            
+        for (index,char) in "ABCDEFGHIJKLMNOPQRSTUVWXYZ".enumerated() {
+            letterButtons[index].setTitle(String(char), for: .normal)
+        }
+        
     }
     
     @objc func letterTapped(_ sender: UIButton){
-            guard let buttonTitle = sender.titleLabel?.text else { return }
+        guard let buttonTitle = sender.titleLabel?.text?.uppercased() else { return }
+        
+        var upcAnswer = answer!.uppercased()
+        
+        if(upcAnswer.uppercased().contains(buttonTitle))
+        {
+            revealedChars.append(Character(buttonTitle))
+            var newStr = ""
+            var index: Int = 0
+            for c in upcAnswer {
+                if revealedChars.contains(c) {
+                    newStr.append(c)
+                } else {
+                    newStr.append("*")
+                }
+                index += 1
+            }
             
-            print(buttonTitle)
-            sender.isHidden = true
+            maskedWord = newStr
+            wordAsked.text = maskedWord
         }
-    
-    
+        sender.isHidden = true
+    }
     
 }
 
