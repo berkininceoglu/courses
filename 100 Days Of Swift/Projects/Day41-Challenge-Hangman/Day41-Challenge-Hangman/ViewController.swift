@@ -11,6 +11,8 @@ class ViewController: UIViewController {
     var wordAsked: UILabel!
     var letterButtons = [UIButton]()
     var allWords = [String]()
+    var answer: String!
+    var maskedWord: String = ""
     
     override func loadView(){
         view = UIView()
@@ -77,7 +79,14 @@ class ViewController: UIViewController {
                 }
         
         let number = Int.random(in: 0..<allWords.count)
-        wordAsked.text = allWords[number]
+        answer = allWords[number]
+        
+        for _ in 0..<answer.count{
+            maskedWord += "*"
+        }
+        
+        
+        wordAsked.text = maskedWord
         
             for (index,char) in "ABCDEFGHIJKLMNOPQRSTUVWXYZ".enumerated() {
                 letterButtons[index].setTitle(String(char), for: .normal)
