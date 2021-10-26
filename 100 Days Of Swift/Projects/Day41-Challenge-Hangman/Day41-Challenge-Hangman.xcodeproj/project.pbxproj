@@ -13,6 +13,7 @@
 		111C16A22727424D0048CF11 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 111C16A02727424D0048CF11 /* Main.storyboard */; };
 		111C16A4272742560048CF11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 111C16A3272742560048CF11 /* Assets.xcassets */; };
 		111C16A7272742560048CF11 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 111C16A5272742560048CF11 /* LaunchScreen.storyboard */; };
+		111C16B3272887990048CF11 /* start.txt in Resources */ = {isa = PBXBuildFile; fileRef = 111C16B2272887980048CF11 /* start.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		111C16A3272742560048CF11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		111C16A6272742560048CF11 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		111C16A8272742560048CF11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		111C16B2272887980048CF11 /* start.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = start.txt; path = "../../Project5-WordScramble/Project5-WordScramble/start.txt"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				111C16A3272742560048CF11 /* Assets.xcassets */,
 				111C16A5272742560048CF11 /* LaunchScreen.storyboard */,
 				111C16A8272742560048CF11 /* Info.plist */,
+				111C16B2272887980048CF11 /* start.txt */,
 			);
 			path = "Day41-Challenge-Hangman";
 			sourceTree = "<group>";
@@ -125,6 +128,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				111C16B3272887990048CF11 /* start.txt in Resources */,
 				111C16A7272742560048CF11 /* LaunchScreen.storyboard in Resources */,
 				111C16A4272742560048CF11 /* Assets.xcassets in Resources */,
 				111C16A22727424D0048CF11 /* Main.storyboard in Resources */,

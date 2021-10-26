@@ -10,6 +10,7 @@ import UIKit
 class ViewController: UIViewController {
     var wordAsked: UILabel!
     var letterButtons = [UIButton]()
+    var allWords = [String]()
     
     override func loadView(){
         view = UIView()
@@ -17,7 +18,7 @@ class ViewController: UIViewController {
         
         wordAsked = UILabel()
         wordAsked.translatesAutoresizingMaskIntoConstraints = false
-        wordAsked.text = "W*O*R*D"
+        wordAsked.text = ""
         wordAsked.textAlignment = .center
         wordAsked.font = UIFont.systemFont(ofSize: 44)
         wordAsked.isUserInteractionEnabled = false
@@ -65,6 +66,18 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        if let startWordsURL = Bundle.main.url(forResource: "start", withExtension: "txt"){
+                    if let startWords = try? String(contentsOf: startWordsURL){
+                        allWords = startWords.components(separatedBy: "\n")
+                    }
+                }
+                
+                if allWords.isEmpty{
+                    allWords = ["silkworm"]
+                }
+        
+        let number = Int.random(in: 0..<allWords.count)
+        wordAsked.text = allWords[number]
         
             for (index,char) in "ABCDEFGHIJKLMNOPQRSTUVWXYZ".enumerated() {
                 letterButtons[index].setTitle(String(char), for: .normal)
