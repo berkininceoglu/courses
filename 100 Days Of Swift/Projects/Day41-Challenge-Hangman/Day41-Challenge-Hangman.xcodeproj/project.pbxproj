@@ -14,6 +14,13 @@
 		111C16A4272742560048CF11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 111C16A3272742560048CF11 /* Assets.xcassets */; };
 		111C16A7272742560048CF11 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 111C16A5272742560048CF11 /* LaunchScreen.storyboard */; };
 		111C16B3272887990048CF11 /* start.txt in Resources */ = {isa = PBXBuildFile; fileRef = 111C16B2272887980048CF11 /* start.txt */; };
+		111C16BB272955640048CF11 /* Hangman-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 111C16B4272955630048CF11 /* Hangman-2.png */; };
+		111C16BC272955640048CF11 /* Hangman-6.png in Resources */ = {isa = PBXBuildFile; fileRef = 111C16B5272955630048CF11 /* Hangman-6.png */; };
+		111C16BD272955640048CF11 /* Hangman-4.png in Resources */ = {isa = PBXBuildFile; fileRef = 111C16B6272955630048CF11 /* Hangman-4.png */; };
+		111C16BE272955640048CF11 /* Hangman-5.png in Resources */ = {isa = PBXBuildFile; fileRef = 111C16B7272955630048CF11 /* Hangman-5.png */; };
+		111C16BF272955640048CF11 /* Hangman-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 111C16B8272955640048CF11 /* Hangman-3.png */; };
+		111C16C0272955640048CF11 /* Hangman-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 111C16B9272955640048CF11 /* Hangman-1.png */; };
+		111C16C1272955640048CF11 /* Hangman-0.png in Resources */ = {isa = PBXBuildFile; fileRef = 111C16BA272955640048CF11 /* Hangman-0.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +33,13 @@
 		111C16A6272742560048CF11 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		111C16A8272742560048CF11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		111C16B2272887980048CF11 /* start.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = start.txt; path = "../../Project5-WordScramble/Project5-WordScramble/start.txt"; sourceTree = "<group>"; };
+		111C16B4272955630048CF11 /* Hangman-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Hangman-2.png"; sourceTree = "<group>"; };
+		111C16B5272955630048CF11 /* Hangman-6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Hangman-6.png"; sourceTree = "<group>"; };
+		111C16B6272955630048CF11 /* Hangman-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Hangman-4.png"; sourceTree = "<group>"; };
+		111C16B7272955630048CF11 /* Hangman-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Hangman-5.png"; sourceTree = "<group>"; };
+		111C16B8272955640048CF11 /* Hangman-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Hangman-3.png"; sourceTree = "<group>"; };
+		111C16B9272955640048CF11 /* Hangman-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Hangman-1.png"; sourceTree = "<group>"; };
+		111C16BA272955640048CF11 /* Hangman-0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Hangman-0.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +80,13 @@
 				111C16A5272742560048CF11 /* LaunchScreen.storyboard */,
 				111C16A8272742560048CF11 /* Info.plist */,
 				111C16B2272887980048CF11 /* start.txt */,
+				111C16BA272955640048CF11 /* Hangman-0.png */,
+				111C16B9272955640048CF11 /* Hangman-1.png */,
+				111C16B4272955630048CF11 /* Hangman-2.png */,
+				111C16B8272955640048CF11 /* Hangman-3.png */,
+				111C16B6272955630048CF11 /* Hangman-4.png */,
+				111C16B7272955630048CF11 /* Hangman-5.png */,
+				111C16B5272955630048CF11 /* Hangman-6.png */,
 			);
 			path = "Day41-Challenge-Hangman";
 			sourceTree = "<group>";
@@ -131,7 +152,14 @@
 				111C16B3272887990048CF11 /* start.txt in Resources */,
 				111C16A7272742560048CF11 /* LaunchScreen.storyboard in Resources */,
 				111C16A4272742560048CF11 /* Assets.xcassets in Resources */,
+				111C16C1272955640048CF11 /* Hangman-0.png in Resources */,
 				111C16A22727424D0048CF11 /* Main.storyboard in Resources */,
+				111C16BE272955640048CF11 /* Hangman-5.png in Resources */,
+				111C16BF272955640048CF11 /* Hangman-3.png in Resources */,
+				111C16C0272955640048CF11 /* Hangman-1.png in Resources */,
+				111C16BD272955640048CF11 /* Hangman-4.png in Resources */,
+				111C16BB272955640048CF11 /* Hangman-2.png in Resources */,
+				111C16BC272955640048CF11 /* Hangman-6.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

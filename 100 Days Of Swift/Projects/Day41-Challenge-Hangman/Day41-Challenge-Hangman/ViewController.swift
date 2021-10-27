@@ -9,15 +9,23 @@ import UIKit
 
 class ViewController: UIViewController {
     var wordAsked: UILabel!
+    var hangmanImage: UIImageView!
     var letterButtons = [UIButton]()
     var allWords = [String]()
     var answer: String!
     var revealedChars = [Character]()
     var maskedWord: String = ""
+    var foul: Int = 0
     
     override func loadView(){
         view = UIView()
         view.backgroundColor = .white
+        
+        hangmanImage = UIImageView()
+        hangmanImage.translatesAutoresizingMaskIntoConstraints = false
+        hangmanImage.contentMode = .scaleAspectFill
+        hangmanImage.clipsToBounds = true
+        view.addSubview(hangmanImage)
         
         wordAsked = UILabel()
         wordAsked.translatesAutoresizingMaskIntoConstraints = false
@@ -33,9 +41,12 @@ class ViewController: UIViewController {
         
         NSLayoutConstraint.activate(
             [
+                hangmanImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                hangmanImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+                
                 wordAsked.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                 wordAsked.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.6),
-                wordAsked.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+                wordAsked.topAnchor.constraint(equalTo: hangmanImage.bottomAnchor),
                 
                 buttonsView.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.9, constant: 35),
                 
@@ -67,6 +78,8 @@ class ViewController: UIViewController {
         }
     }
     override func viewDidLoad() {
+        hangmanImage.image = UIImage(named: "Hangman-0")
+        print(hangmanImage)
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         if let startWordsURL = Bundle.main.url(forResource: "start", withExtension: "txt"){
@@ -114,6 +127,12 @@ class ViewController: UIViewController {
             
             maskedWord = newStr
             wordAsked.text = maskedWord
+        }
+        else{
+            foul += 1
+            var imageName = "Hangman-\(foul)"
+            hangmanImage.image = UIImage(named: imageName)
+            
         }
         sender.isEnabled = false
         sender.layer.opacity = 0.4
