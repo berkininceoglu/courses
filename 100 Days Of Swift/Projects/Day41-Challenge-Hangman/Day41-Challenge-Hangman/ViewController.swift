@@ -83,7 +83,7 @@ class ViewController: UIViewController {
         answer = allWords[number]
         print(answer)
         for _ in 0..<answer.count{
-            maskedWord += "?"
+            maskedWord += "*"
         }
         wordAsked.text = maskedWord
         
@@ -96,7 +96,7 @@ class ViewController: UIViewController {
     @objc func letterTapped(_ sender: UIButton){
         guard let buttonTitle = sender.titleLabel?.text?.uppercased() else { return }
         
-        var upcAnswer = answer!.uppercased()
+        let upcAnswer = answer!.uppercased()
         
         if(upcAnswer.uppercased().contains(buttonTitle))
         {
@@ -115,7 +115,8 @@ class ViewController: UIViewController {
             maskedWord = newStr
             wordAsked.text = maskedWord
         }
-        sender.isHidden = true
+        sender.isEnabled = false
+        sender.layer.opacity = 0.4
     }
     
 }
