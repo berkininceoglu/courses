@@ -78,9 +78,13 @@ class ViewController: UIViewController {
         }
     }
     override func viewDidLoad() {
-        hangmanImage.image = UIImage(named: "Hangman-0")
-        print(hangmanImage)
         super.viewDidLoad()
+        
+        loadGame()
+    }
+    
+    func loadGame(){
+        hangmanImage.image = UIImage(named: "Hangman-0")
         // Do any additional setup after loading the view.
         if let startWordsURL = Bundle.main.url(forResource: "start", withExtension: "txt"){
             if let startWords = try? String(contentsOf: startWordsURL){
@@ -103,7 +107,6 @@ class ViewController: UIViewController {
         for (index,char) in "ABCDEFGHIJKLMNOPQRSTUVWXYZ".enumerated() {
             letterButtons[index].setTitle(String(char), for: .normal)
         }
-        
     }
     
     @objc func letterTapped(_ sender: UIButton){
@@ -130,13 +133,32 @@ class ViewController: UIViewController {
         }
         else{
             foul += 1
-            var imageName = "Hangman-\(foul)"
+            let imageName = "Hangman-\(foul)"
             hangmanImage.image = UIImage(named: imageName)
+            if(foul == 6){
+                let ac = UIAlertController(title: "Man Hanged!", message: "Wanna play again?", preferredStyle: .alert)
+                                ac.addAction(UIAlertAction(title: "Let's go.", style: .default, handler: replayGame))
+                                present(ac, animated: true)
+            }
+
             
         }
         sender.isEnabled = false
         sender.layer.opacity = 0.4
     }
+    
+    func replayGame(action: UIAlertAction){
+            foul = 0
+            answer = ""
+            maskedWord = ""
+        wordAsked.text = ""
+        revealedChars.removeAll()
+        for button in letterButtons {
+            button.isEnabled = true
+            button.layer.opacity = 1
+        }
+            loadGame()
+        }
     
 }
 
