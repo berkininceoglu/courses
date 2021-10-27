@@ -13,6 +13,7 @@
 		111C16D62729CA930048CF11 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 111C16D42729CA930048CF11 /* Main.storyboard */; };
 		111C16D82729CA9D0048CF11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 111C16D72729CA9D0048CF11 /* Assets.xcassets */; };
 		111C16DB2729CA9D0048CF11 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 111C16D92729CA9D0048CF11 /* LaunchScreen.storyboard */; };
+		111C16E32729CCA00048CF11 /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111C16E22729CCA00048CF11 /* PersonCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		111C16D72729CA9D0048CF11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		111C16DA2729CA9D0048CF11 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		111C16DC2729CA9D0048CF11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		111C16E22729CCA00048CF11 /* PersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				111C16D02729CA930048CF11 /* SceneDelegate.swift */,
 				111C16D22729CA930048CF11 /* ViewController.swift */,
 				111C16D42729CA930048CF11 /* Main.storyboard */,
+				111C16E22729CCA00048CF11 /* PersonCell.swift */,
 				111C16D72729CA9D0048CF11 /* Assets.xcassets */,
 				111C16D92729CA9D0048CF11 /* LaunchScreen.storyboard */,
 				111C16DC2729CA9D0048CF11 /* Info.plist */,
@@ -140,6 +143,7 @@
 			files = (
 				111C16D32729CA930048CF11 /* ViewController.swift in Sources */,
 				111C16CF2729CA930048CF11 /* AppDelegate.swift in Sources */,
+				111C16E32729CCA00048CF11 /* PersonCell.swift in Sources */,
 				111C16D12729CA930048CF11 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
