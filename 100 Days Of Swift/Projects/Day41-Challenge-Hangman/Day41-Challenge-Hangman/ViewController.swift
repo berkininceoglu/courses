@@ -132,6 +132,14 @@ class ViewController: UIViewController {
             
             maskedWord = newStr
             wordAsked.text = maskedWord
+            
+            print(revealedChars.count)
+            print(answer.count)
+            if(maskedWord.uppercased() == answer.uppercased()){
+                let ac = UIAlertController(title: "You won!", message: "Wanna play again?", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "Let's go.", style: .default, handler: replayGame))
+                present(ac, animated: true)
+            }
         }
         else{
             foul += 1
