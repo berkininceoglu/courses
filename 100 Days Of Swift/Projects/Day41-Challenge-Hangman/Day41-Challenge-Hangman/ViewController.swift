@@ -45,7 +45,7 @@ class ViewController: UIViewController {
                 hangmanImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
                 
                 wordAsked.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                wordAsked.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.6),
+                wordAsked.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
                 wordAsked.topAnchor.constraint(equalTo: hangmanImage.bottomAnchor),
                 
                 buttonsView.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.9, constant: 35),
@@ -100,9 +100,11 @@ class ViewController: UIViewController {
         answer = allWords[number]
         print(answer)
         for _ in 0..<answer.count{
-            maskedWord += "*"
+            maskedWord += "_"
         }
-        wordAsked.text = maskedWord
+        let attributedStr = NSMutableAttributedString(string: maskedWord)
+        attributedStr.addAttribute(NSAttributedString.Key.kern, value: 4, range: NSMakeRange(0, attributedStr.length))
+        wordAsked.attributedText = attributedStr
         
         for (index,char) in "ABCDEFGHIJKLMNOPQRSTUVWXYZ".enumerated() {
             letterButtons[index].setTitle(String(char), for: .normal)
@@ -123,7 +125,7 @@ class ViewController: UIViewController {
                 if revealedChars.contains(c) {
                     newStr.append(c)
                 } else {
-                    newStr.append("*")
+                    newStr.append("_")
                 }
                 index += 1
             }
@@ -137,10 +139,10 @@ class ViewController: UIViewController {
             hangmanImage.image = UIImage(named: imageName)
             if(foul == 6){
                 let ac = UIAlertController(title: "Man Hanged!", message: "Wanna play again?", preferredStyle: .alert)
-                                ac.addAction(UIAlertAction(title: "Let's go.", style: .default, handler: replayGame))
-                                present(ac, animated: true)
+                ac.addAction(UIAlertAction(title: "Let's go.", style: .default, handler: replayGame))
+                present(ac, animated: true)
             }
-
+            
             
         }
         sender.isEnabled = false
@@ -148,17 +150,17 @@ class ViewController: UIViewController {
     }
     
     func replayGame(action: UIAlertAction){
-            foul = 0
-            answer = ""
-            maskedWord = ""
+        foul = 0
+        answer = ""
+        maskedWord = ""
         wordAsked.text = ""
         revealedChars.removeAll()
         for button in letterButtons {
             button.isEnabled = true
             button.layer.opacity = 1
         }
-            loadGame()
-        }
+        loadGame()
+    }
     
 }
 
