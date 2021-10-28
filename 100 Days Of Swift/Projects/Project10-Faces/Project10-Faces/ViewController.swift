@@ -49,24 +49,25 @@ UINavigationControllerDelegate
         
         ac.addAction(UIAlertAction(title: "Rename", style: .default) {
             [weak self] _ in
-            let alert = UIAlertController(title: "Change Name", message: "Wanna change the name?", preferredStyle: .alert)
+            let renameAlert = UIAlertController(title: "Change Name", message: "Wanna change the name?", preferredStyle: .alert)
             
-            alert.addTextField()
+            renameAlert.addTextField()
             
-            alert.addAction(UIAlertAction(title: "OK", style: .default) {
-                [weak self, weak alert] _ in
-            guard let newName = alert?.textFields?[0].text else { return }
+            renameAlert.addAction(UIAlertAction(title: "OK", style: .default) {
+                [weak self, weak renameAlert] _ in
+            guard let newName = renameAlert?.textFields?[0].text else { return }
             person.name = newName
             self?.collectionView.reloadData()
             })
             
-            self?.present(alert, animated: true)
+            self?.present(renameAlert, animated: true)
         })
         
         ac.addAction(UIAlertAction(title: "Delete", style: .default) {
-            [weak self, weak ac] _ in
-            let index = self?.people.firstIndex(of: person)
-            self?.people.remove(at: index!) //force unwrapping should be corrected
+            [weak self] _ in
+            if let index = self?.people.firstIndex(of: person){
+                self?.people.remove(at: index)
+            }
             self?.collectionView.reloadData()
             
         })
