@@ -45,12 +45,28 @@ UINavigationControllerDelegate
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let person = people[indexPath.item]
-        let ac = UIAlertController(title: "Change Name", message: "Wanna change the name?", preferredStyle: .alert)
-        ac.addTextField()
-        ac.addAction(UIAlertAction(title: "OK", style: .default) {
-            [weak self, weak ac] _ in
-            guard let newName = ac?.textFields?[0].text else { return }
+        let ac = UIAlertController(title: "Rename/Delete", message: "Wanna change the name or delete it?", preferredStyle: .alert)
+        
+        ac.addAction(UIAlertAction(title: "Rename", style: .default) {
+            [weak self] _ in
+            let alert = UIAlertController(title: "Change Name", message: "Wanna change the name?", preferredStyle: .alert)
+            
+            alert.addTextField()
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .default) {
+                [weak self, weak alert] _ in
+            guard let newName = alert?.textFields?[0].text else { return }
             person.name = newName
+            self?.collectionView.reloadData()
+            })
+            
+            self?.present(alert, animated: true)
+        })
+        
+        ac.addAction(UIAlertAction(title: "Delete", style: .default) {
+            [weak self, weak ac] _ in
+            let index = self?.people.firstIndex(of: person)
+            self?.people.remove(at: index!) //force unwrapping should be corrected
             self?.collectionView.reloadData()
             
         })
