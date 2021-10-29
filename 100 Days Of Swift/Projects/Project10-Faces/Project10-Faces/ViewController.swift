@@ -31,6 +31,7 @@ UINavigationControllerDelegate
         
         let person = people[indexPath.item]
         cell.name.text = person.name
+        cell.name.textColor = .systemBackground
         
         let path = getDocumentsDirectory().appendingPathComponent(person.image)
         cell.imageView.image = UIImage(contentsOfFile: path.path)
@@ -56,7 +57,10 @@ UINavigationControllerDelegate
             renameAlert.addAction(UIAlertAction(title: "OK", style: .default) {
                 [weak self, weak renameAlert] _ in
             guard let newName = renameAlert?.textFields?[0].text else { return }
+                print(person.name)
+                print(newName)
             person.name = newName
+                print(person.name)
             self?.collectionView.reloadData()
             })
             
