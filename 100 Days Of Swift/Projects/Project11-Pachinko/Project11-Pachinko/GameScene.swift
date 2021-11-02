@@ -16,6 +16,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             scoreLabel.text = "Score: \(score)"
         }
     }
+    var ballsUsed : Int = 0
     
     var editLabel: SKLabelNode!
     
@@ -81,18 +82,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 box.physicsBody = SKPhysicsBody(rectangleOf: box.size)
                 box.physicsBody?.isDynamic = false
+                box.name = "obstacle"
                 addChild(box)
             } else {
-                let randomBallName = GetRandomBallColor(choice : Int.random(in: 1...7))
-                let ball = SKSpriteNode(imageNamed: randomBallName)
-                
-                ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
-                ball.physicsBody?.restitution = 0.4
-                ball.physicsBody?.contactTestBitMask = ball.physicsBody?.collisionBitMask ?? 0
-                ball.position.x = location.x
-                ball.position.y = 620
-                ball.name = "ball"
-                addChild(ball)
+                if(ballsUsed <= 5){
+                    let randomBallName = GetRandomBallColor(choice : Int.random(in: 1...7))
+                    let ball = SKSpriteNode(imageNamed: randomBallName)
+                    
+                    ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
+                    ball.physicsBody?.restitution = 0.4
+                    ball.physicsBody?.contactTestBitMask = ball.physicsBody?.collisionBitMask ?? 0
+                    ball.position.x = location.x
+                    ball.position.y = 620
+                    ball.name = "ball"
+                    addChild(ball)
+                    ballsUsed += 1
+                }
+               
             }
             
         }
@@ -137,20 +143,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func collision(between ball: SKNode, object : SKNode){
         if object.name == "good"{
             score += 1
-            destroy(ball: ball)
+            ballsUsed -= 1
+            destroy(object: ball)
         }
         else if object.name == "bad"{
             score -= 1
-            destroy(ball: ball)
+            destroy(object: ball)
+        }
+        else if object.name == "obstacle"{
+            destroy(object: object)
         }
     }
     
-    func destroy(ball: SKNode){
-        if let fireParticles = SKEmitterNode(fileNamed: "FireParticles"){
-            fireParticles.position = ball.position
-            addChild(fireParticles)
+    func destroy(object: SKNode){
+        if object.name == "ball"{
+            if let fireParticles = SKEmitterNode(fileNamed: "FireParticles"){
+                fireParticles.position = object.position
+                addChild(fireParticles)
+            }
         }
-        ball.removeFromParent()
+        else{
+            if let fireParticles = SKEmitterNode(fileNamed: "Smoke"){
+                fireParticles.position = object.position
+                addChild(fireParticles)
+            }
+        }
+        
+        object.removeFromParent()
     }
     
     func didBegin(_ contact: SKPhysicsContact){
