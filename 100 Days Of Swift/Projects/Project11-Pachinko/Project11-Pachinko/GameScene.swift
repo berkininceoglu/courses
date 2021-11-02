@@ -83,7 +83,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 box.physicsBody?.isDynamic = false
                 addChild(box)
             } else {
-                let ball = SKSpriteNode(imageNamed: "ballRed")
+                let randomBallName = GetRandomBallColor(choice : Int.random(in: 1...7))
+                let ball = SKSpriteNode(imageNamed: randomBallName)
                 ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
                 ball.physicsBody?.restitution = 0.4
                 ball.physicsBody?.contactTestBitMask = ball.physicsBody?.collisionBitMask ?? 0
@@ -159,6 +160,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }else if contact.bodyB.node?.name == "ball"{
             collision(between: nodeB, object: nodeA)
         }
+    }
+    
+    func GetRandomBallColor(choice randInt: Int) -> String{
+        switch randInt{
+        case 1:
+            return "ballBlue"
+        case 2:
+            return "ballCyan"
+        case 3:
+            return "ballGrey"
+        case 4:
+            return "ballPurple"
+        case 5:
+            return "ballYellow"
+        case 6:
+            return "ballGreen"
+        default:
+            return "ballRed"
+        }
+   
     }
     
     
