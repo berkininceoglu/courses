@@ -17,6 +17,13 @@ UINavigationControllerDelegate
         super.viewDidLoad()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPerson))
+        
+        let defaults = UserDefaults.standard
+        if let savedPeople = defaults.object(forKey: "people") as? Data{
+            if let decodedPeople = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(savedPeople) as? [Person]{
+                people = decodedPeople
+            }
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -57,10 +64,8 @@ UINavigationControllerDelegate
             renameAlert.addAction(UIAlertAction(title: "OK", style: .default) {
                 [weak self, weak renameAlert] _ in
             guard let newName = renameAlert?.textFields?[0].text else { return }
-                print(person.name)
-                print(newName)
             person.name = newName
-                print(person.name)
+                self?.save()
             self?.collectionView.reloadData()
             })
             
@@ -101,6 +106,7 @@ UINavigationControllerDelegate
         
         let person = Person(name: "Unkown", image: imageName)
         people.append(person)
+        save()
         collectionView.reloadData()
         
         dismiss(animated: true)
@@ -109,6 +115,13 @@ UINavigationControllerDelegate
     func getDocumentsDirectory()-> URL{
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
+    }
+    
+    func save(){
+        if let savedData = try? NSKeyedArchiver.archivedData(withRootObject: people, requiringSecureCoding: false){
+            let defaults = UserDefaults.standard
+            defaults.set(savedData, forKey: "people")
+        }
     }
 
 
