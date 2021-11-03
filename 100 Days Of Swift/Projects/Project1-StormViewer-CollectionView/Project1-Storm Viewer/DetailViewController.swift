@@ -12,9 +12,12 @@ class DetailViewController: UIViewController {
     var selectedImage: String?
     var orderCount: Int = 0
     var totalCount: Int = 0
+
     
     
     override func viewDidLoad() {
+        let defaults = UserDefaults.standard
+        
         super.viewDidLoad()
         
         title = "\(orderCount+1) of \(totalCount)"
@@ -22,6 +25,10 @@ class DetailViewController: UIViewController {
         
         if let imageToLoad = selectedImage{
             imageView.image = UIImage(named:imageToLoad)
+            
+            var imageViewCounter = defaults.integer(forKey: imageToLoad) + 1
+            print(imageViewCounter)
+            defaults.set(imageViewCounter, forKey: imageToLoad)
         }
         
         // Do any additional setup after loading the view.
