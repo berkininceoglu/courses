@@ -18,6 +18,19 @@ UINavigationControllerDelegate
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPerson))
         // Do any additional setup after loading the view.
+        
+        let defaults = UserDefaults.standard
+        
+        if let savedPeople = defaults.object(forKey: "people") as? Data {
+            let jsonDecoder = JSONDecoder()
+            
+            do{
+                people = try jsonDecoder.decode([Person].self, from: savedPeople)
+            }
+            catch{
+                print("Failed to load")
+            }
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -57,10 +70,8 @@ UINavigationControllerDelegate
             renameAlert.addAction(UIAlertAction(title: "OK", style: .default) {
                 [weak self, weak renameAlert] _ in
             guard let newName = renameAlert?.textFields?[0].text else { return }
-                print(person.name)
-                print(newName)
             person.name = newName
-                print(person.name)
+                self?.save()
             self?.collectionView.reloadData()
             })
             
@@ -101,6 +112,7 @@ UINavigationControllerDelegate
         
         let person = Person(name: "Unkown", image: imageName)
         people.append(person)
+        save()
         collectionView.reloadData()
         
         dismiss(animated: true)
@@ -109,6 +121,18 @@ UINavigationControllerDelegate
     func getDocumentsDirectory()-> URL{
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
+    }
+    
+    func save(){
+        let jsonEncoder = JSONEncoder()
+        
+        if let savedData = try? jsonEncoder.encode(people){
+            let defaults = UserDefaults.standard
+            defaults.set(savedData, forKey: "people")
+        }
+        else{
+            print("Failed to save.")
+        }
     }
 
 
