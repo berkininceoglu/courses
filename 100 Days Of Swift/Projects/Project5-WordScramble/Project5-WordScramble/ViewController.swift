@@ -12,6 +12,7 @@ class ViewController: UITableViewController {
     var usedWords = [String]()
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(promptForAnswer))
@@ -28,12 +29,20 @@ class ViewController: UITableViewController {
             allWords = ["silkworm"]
         }
         
+        usedWords = UserDefaults.standard.object(forKey: "usedWords") as? [String] ?? [String]()
         startGame()
     }
     
     func startGame(){
-        title = allWords.randomElement()
-        usedWords.removeAll(keepingCapacity: true)
+        let currentQuestion = UserDefaults.standard.string(forKey: "currentQuestion")
+        if currentQuestion != nil{
+            title = currentQuestion
+        }else{
+            title = allWords.randomElement()
+            UserDefaults.standard.set(title, forKey: "currentQuestion")
+            usedWords.removeAll(keepingCapacity: true)
+        }
+        
         tableView.reloadData()
     }
     
@@ -75,6 +84,7 @@ class ViewController: UITableViewController {
                 if isReal(word: lowerAnswer){
         
                     usedWords.insert(lowerAnswer, at: 0)
+                    UserDefaults.standard.set(usedWords, forKey: "usedWords")
                     
                     let indexPath = IndexPath(row: 0, section: 0)
                     tableView.insertRows(at: [indexPath], with: .automatic)
