@@ -16,11 +16,13 @@ class ViewController: UIViewController {
     var questionsAnswered: Int = 0
     var score = 0
     var correctAnswer = 0
+    var highScore = UserDefaults.standard.integer(forKey: "highscore")
     
     override func viewDidLoad() {
+        print(highScore)
         super.viewDidLoad()
         
-countries += ["estonia", "france", "germany", "italy", "ireland", "monaco", "nigeria", "poland", "russia", "uk", "us"]
+        countries += ["estonia", "france", "germany", "italy", "ireland", "monaco", "nigeria", "poland", "russia", "uk", "us"]
         
         askQuestion()
         
@@ -54,34 +56,48 @@ countries += ["estonia", "france", "germany", "italy", "ireland", "monaco", "nig
         
         askQuestion()
     }
-
+    
     @IBAction func buttonTapped(_ sender: UIButton) {
         let questionLimit: Int = 10
         questionsAnswered += 1
         
+        checkAnswer(tag: sender.tag)
         if(questionsAnswered == questionLimit){
+            
+            
+            if(score > highScore){
+                let ac = UIAlertController(title: title, message: "You have beaten your high score: \(highScore) with \(score) points.", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "Restart", style: .default, handler: restartGame(action:)))
+                present(ac,animated: true)
+                UserDefaults.standard.set(score, forKey: "highscore")
+            }
+            
+            
             let ac = UIAlertController(title: title, message: "Final score is \(score) out of \(questionLimit).", preferredStyle: .alert)
-            
             ac.addAction(UIAlertAction(title: "Restart", style: .default, handler: restartGame))
-            
             present(ac,animated: true)
-
+            
         }
-        if(sender.tag == correctAnswer)
+        
+        print(questionsAnswered)
+        print(score)
+        
+        //let ac = UIAlertController(title: title, message: "Your score is \(score).", preferredStyle: .alert)
+        //ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
+        //present(ac,animated: true)
+        askQuestion(action: UIAlertAction())
+        
+    }
+    func checkAnswer(tag : Int){
+        if(tag == correctAnswer)
         {
             title = "Correct"
             score += 1
         }
         else{
-            title = "Wrong! That is the flag of \(countries[sender.tag].uppercased())"
+            title = "Wrong! That was the flag of \(countries[tag].uppercased())"
             score -= 1
         }
-        
-        let ac = UIAlertController(title: title, message: "Your score is \(score).", preferredStyle: .alert)
-        
-        ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
-        
-        present(ac,animated: true)
     }
     
     @objc func shareScore() {
