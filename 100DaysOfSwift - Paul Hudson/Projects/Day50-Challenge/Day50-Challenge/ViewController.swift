@@ -50,11 +50,27 @@ class ViewController: UITableViewController, UIImagePickerControllerDelegate,
             try? jpegData.write(to: imagePath)
         }
         
-        let pic = Image(imageName: imageName, caption: "Unknown")
-        pictures.append(pic)
-        save()
         
-        tableView.reloadData()
+        self.dismiss(animated: true, completion: nil)
+        
+        let renameAlert = UIAlertController(title: "Change Name", message: "Wanna change the name?", preferredStyle: .alert)
+        
+        renameAlert.addTextField()
+        
+        renameAlert.addAction(UIAlertAction(title: "OK", style: .default) {
+            [weak renameAlert] _ in
+            guard let newName = renameAlert?.textFields?[0].text else { return }
+            
+            let pic = Image(imageName: imageName, caption: newName)
+            self.pictures.append(pic)
+            self.save()
+            
+            self.tableView.reloadData()
+        })
+        
+        self.present(renameAlert, animated: true)
+        
+        
         
         dismiss(animated: true)
     }
