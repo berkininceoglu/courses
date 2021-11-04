@@ -10,9 +10,22 @@ import UIKit
 class ViewController: UITableViewController, UIImagePickerControllerDelegate,
                       UINavigationControllerDelegate {
     var pictures = [Image]()
+    let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let savedPictures = defaults.object(forKey: "pictures") as? Data {
+            let jsonDecoder = JSONDecoder()
+            
+            do{
+                pictures = try jsonDecoder.decode([Image].self, from: savedPictures)
+            }
+            catch{
+                print("Failed to load")
+            }
+        }
+        
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(selectImage))
     }
@@ -39,6 +52,8 @@ class ViewController: UITableViewController, UIImagePickerControllerDelegate,
         
         let pic = Image(imageName: imageName, caption: "Unknown")
         pictures.append(pic)
+        save()
+        
         tableView.reloadData()
         
         dismiss(animated: true)
@@ -80,6 +95,18 @@ class ViewController: UITableViewController, UIImagePickerControllerDelegate,
             vc.caption = pic.caption
             vc.imageName = pic.imageName
             navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func save(){
+        let jsonEncoder = JSONEncoder()
+        
+        if let savedData = try? jsonEncoder.encode(pictures){
+            let defaults = UserDefaults.standard
+            defaults.set(savedData, forKey: "pictures")
+        }
+        else{
+            print("Failed to save.")
         }
     }
     
