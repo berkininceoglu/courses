@@ -53,7 +53,7 @@ class ViewController: UITableViewController, UIImagePickerControllerDelegate,
         
         self.dismiss(animated: true, completion: nil)
         
-        let renameAlert = UIAlertController(title: "Change Name", message: "Wanna change the name?", preferredStyle: .alert)
+        let renameAlert = UIAlertController(title: "Name", message: "Please enter a name for your photo.", preferredStyle: .alert)
         
         renameAlert.addTextField()
         
@@ -70,9 +70,6 @@ class ViewController: UITableViewController, UIImagePickerControllerDelegate,
         
         self.present(renameAlert, animated: true)
         
-        
-        
-        dismiss(animated: true)
     }
     
     func getDocumentsDirectory()-> URL{
