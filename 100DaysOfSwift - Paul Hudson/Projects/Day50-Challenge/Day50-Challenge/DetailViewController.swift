@@ -8,13 +8,21 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    @IBOutlet weak var detailImage: UIImageView!
+    
     var caption: String = ""
     var imageName: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print(caption)
+        let path = getDocumentsDirectory().appendingPathComponent(imageName)
+        detailImage.image = UIImage(contentsOfFile: path.path)
+    }
+    
+    func getDocumentsDirectory()-> URL{
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
     }
     
 

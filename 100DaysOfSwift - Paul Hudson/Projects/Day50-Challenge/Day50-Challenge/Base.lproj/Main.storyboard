@@ -61,13 +61,22 @@
                     <view key="view" contentMode="scaleToFill" id="5pR-Jc-qni">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HbG-eo-hp5">
+                                <rect key="frame" x="20" y="141" width="374" height="260"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vBQ-cv-Zk5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="detailImage" destination="HbG-eo-hp5" id="zyW-No-3Vf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NGn-iK-0QM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-222" y="-611"/>
+            <point key="canvasLocation" x="-223.18840579710147" y="-611.38392857142856"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GMc-Kd-o9d">
