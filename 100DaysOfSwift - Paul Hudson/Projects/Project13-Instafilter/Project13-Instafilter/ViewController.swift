@@ -9,8 +9,8 @@ import CoreImage
 import UIKit
 
 class ViewController: UIViewController,
-UIImagePickerControllerDelegate,
-UINavigationControllerDelegate{
+                      UIImagePickerControllerDelegate,
+                      UINavigationControllerDelegate{
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var intensity: UISlider!
     
@@ -27,7 +27,7 @@ UINavigationControllerDelegate{
         context = CIContext()
         currentFilter = CIFilter(name: "CISepiaTone")
     }
-
+    
     @IBAction func intensityChanged(_ sender: Any) {
         applyProcessing()
     }
@@ -64,6 +64,8 @@ UINavigationControllerDelegate{
     }
     
     @IBAction func save(_ sender: Any) {
+        guard let image = imageView.image else { return }
+        UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
     }
     
     @objc func importPicture(){
@@ -109,6 +111,19 @@ UINavigationControllerDelegate{
         if let cgImage = context.createCGImage(outputImage, from: outputImage.extent){
             let processedImage = UIImage(cgImage: cgImage)
             imageView.image = processedImage
+        }
+    }
+    
+    @objc func image (_ image : UIImage, didFinishSavingWithError error : Error?, contextInfo : UnsafeRawPointer){
+        if let error = error {
+            let ac = UIAlertController(title: "Save error", message: error.localizedDescription, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+        }
+        else{
+            let ac = UIAlertController(title: "Photo saved", message: "Your photo saved successfully.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
         }
     }
     
