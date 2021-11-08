@@ -50,11 +50,13 @@ class ViewController: UIViewController,
         present(ac, animated: true)
     }
     
-    
-    
     func setFilter(action: UIAlertAction){
-        guard currentImage != nil else { return }
+        guard currentImage != nil else {
+            showNoImageError()
+            return }
         guard let actionTitle = action.title else { return }
+        
+        title = actionTitle
         
         currentFilter = CIFilter(name: actionTitle)
         
@@ -64,7 +66,10 @@ class ViewController: UIViewController,
     }
     
     @IBAction func save(_ sender: Any) {
-        guard let image = imageView.image else { return }
+        guard let image = imageView.image else {
+            showNoImageError()
+            return
+        }
         UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
     }
     
@@ -125,6 +130,12 @@ class ViewController: UIViewController,
             ac.addAction(UIAlertAction(title: "OK", style: .default))
             present(ac, animated: true)
         }
+    }
+    
+    func showNoImageError(){
+        let errorAlert = UIAlertController(title: "Error!", message: "No pic has been selected.", preferredStyle: .alert)
+        errorAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(errorAlert, animated: true)
     }
     
 }
