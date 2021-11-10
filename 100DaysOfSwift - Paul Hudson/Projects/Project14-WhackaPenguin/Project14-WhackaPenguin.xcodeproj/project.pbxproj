@@ -14,6 +14,7 @@
 		11D41928273C44F4000148D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11D41926273C44F4000148D2 /* Main.storyboard */; };
 		11D4192A273C44FE000148D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11D41929273C44FE000148D2 /* Assets.xcassets */; };
 		11D4192D273C44FE000148D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11D4192B273C44FE000148D2 /* LaunchScreen.storyboard */; };
+		11D41936273C491A000148D2 /* WhackSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D41935273C491A000148D2 /* WhackSlot.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		11D4192C273C44FE000148D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		11D41933273C45B3000148D2 /* whack.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = whack.caf; sourceTree = "<group>"; };
 		11D41934273C45B3000148D2 /* whackBad.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = whackBad.caf; sourceTree = "<group>"; };
+		11D41935273C491A000148D2 /* WhackSlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhackSlot.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 			children = (
 				11D4191C273C44F4000148D2 /* AppDelegate.swift */,
 				11D4191E273C44F4000148D2 /* GameScene.sks */,
+				11D41935273C491A000148D2 /* WhackSlot.swift */,
 				11D41922273C44F4000148D2 /* GameScene.swift */,
 				11D41924273C44F4000148D2 /* GameViewController.swift */,
 				11D41926273C44F4000148D2 /* Main.storyboard */,
@@ -146,6 +149,7 @@
 			files = (
 				11D41923273C44F4000148D2 /* GameScene.swift in Sources */,
 				11D41925273C44F4000148D2 /* GameViewController.swift in Sources */,
+				11D41936273C491A000148D2 /* WhackSlot.swift in Sources */,
 				11D4191D273C44F4000148D2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
