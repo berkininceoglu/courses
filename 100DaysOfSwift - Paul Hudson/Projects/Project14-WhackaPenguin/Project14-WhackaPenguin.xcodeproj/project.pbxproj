@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		11780535273C5D1E005E91FE /* whackBad.caf in Resources */ = {isa = PBXBuildFile; fileRef = 11D41934273C45B3000148D2 /* whackBad.caf */; };
 		11780536273C5D20005E91FE /* whack.caf in Resources */ = {isa = PBXBuildFile; fileRef = 11D41933273C45B3000148D2 /* whack.caf */; };
+		11780538273C5EC7005E91FE /* gameOver.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 11780537273C5E6D005E91FE /* gameOver.m4a */; };
 		11D4191D273C44F4000148D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D4191C273C44F4000148D2 /* AppDelegate.swift */; };
 		11D4191F273C44F4000148D2 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 11D4191E273C44F4000148D2 /* GameScene.sks */; };
 		11D41923273C44F4000148D2 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D41922273C44F4000148D2 /* GameScene.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		11780537273C5E6D005E91FE /* gameOver.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = gameOver.m4a; sourceTree = "<group>"; };
 		11D41919273C44F4000148D2 /* Project14-WhackaPenguin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project14-WhackaPenguin.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11D4191C273C44F4000148D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11D4191E273C44F4000148D2 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				11D4192B273C44FE000148D2 /* LaunchScreen.storyboard */,
 				11D41933273C45B3000148D2 /* whack.caf */,
 				11D41934273C45B3000148D2 /* whackBad.caf */,
+				11780537273C5E6D005E91FE /* gameOver.m4a */,
 			);
 			path = "Project14-WhackaPenguin";
 			sourceTree = "<group>";
@@ -140,6 +143,7 @@
 				11D4191F273C44F4000148D2 /* GameScene.sks in Resources */,
 				11D4192A273C44FE000148D2 /* Assets.xcassets in Resources */,
 				11D4192D273C44FE000148D2 /* LaunchScreen.storyboard in Resources */,
+				11780538273C5EC7005E91FE /* gameOver.m4a in Resources */,
 				11780536273C5D20005E91FE /* whack.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
