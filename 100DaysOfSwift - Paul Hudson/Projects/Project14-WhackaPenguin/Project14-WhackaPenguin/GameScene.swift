@@ -58,7 +58,7 @@ class GameScene: SKScene {
             
             if !whackSlot.isVisible { continue }
             if whackSlot.isHit { continue }
-            whackSlot.hit()
+            whackSlot.hit(at: node.position)
             
             
             if node.name == "charFriend"{
@@ -77,6 +77,7 @@ class GameScene: SKScene {
     func createSlot(at position: CGPoint){
         let slot = WhackSlot()
         slot.configure(at: position)
+        slot.loc = position
         addChild(slot)
         slots.append(slot)
     }
@@ -87,7 +88,7 @@ class GameScene: SKScene {
         
         if(numRounds == 30){
             for slot in slots {
-                slot.hide()
+                slot.hide(at: slot.loc)
             }
             
             run(SKAction.playSoundFileNamed("gameOver.m4a", waitForCompletion: false))
@@ -97,18 +98,24 @@ class GameScene: SKScene {
             gameOver.zPosition = 1
             addChild(gameOver)
             
+            let finalScore = SKLabelNode(fontNamed: "ChalkDuster")
+            finalScore.text = "Final score is \(score)"
+            finalScore.position = CGPoint(x: 512, y: 300)
+            finalScore.zPosition = 1
+            addChild(finalScore)
+            
             return
         }
         
         popUpTime *= 0.991
         
         slots.shuffle()
-        slots[0].show(hideTime: popUpTime)
+        slots[0].show(hideTime: popUpTime, at: slots[0].loc)
         
-        if Int.random(in: 0...12) > 4 { slots [1].show(hideTime: popUpTime)}
-        if Int.random(in: 0...12) > 8 { slots [2].show(hideTime: popUpTime)}
-        if Int.random(in: 0...12) > 10 { slots [3].show(hideTime: popUpTime)}
-        if Int.random(in: 0...12) > 11 { slots [4].show(hideTime: popUpTime)}
+        if Int.random(in: 0...12) > 4 { slots [1].show(hideTime: popUpTime,at: slots[1].loc)}
+        if Int.random(in: 0...12) > 8 { slots [2].show(hideTime: popUpTime,at: slots[2].loc)}
+        if Int.random(in: 0...12) > 10 { slots [3].show(hideTime: popUpTime,at: slots[3].loc)}
+        if Int.random(in: 0...12) > 11 { slots [4].show(hideTime: popUpTime,at: slots[4].loc)}
         
         let minDelay = popUpTime / 2.0
         let maxDelay = popUpTime * 2

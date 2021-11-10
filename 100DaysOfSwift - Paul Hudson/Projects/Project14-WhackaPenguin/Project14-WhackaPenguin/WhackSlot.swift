@@ -11,6 +11,7 @@ import UIKit
 class WhackSlot: SKNode {
     var charNode: SKSpriteNode!
     
+    var loc = CGPoint(x: 0, y: 0)
     var isVisible = false
     var isHit = false
     
@@ -33,7 +34,7 @@ class WhackSlot: SKNode {
         addChild(cropNode)
     }
     
-    func show(hideTime : Double){
+    func show(hideTime : Double, at position : CGPoint){
         if isVisible { return }
         
         charNode.xScale = 1
@@ -52,21 +53,27 @@ class WhackSlot: SKNode {
             charNode.name = "charEnemy"
         }
         
+        //showParticles(particleName: "BokehParticles",at : position)
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + (hideTime * 3.5)){
             [weak self] in
-            self?.hide()
+            self?.hide(at : position)
         }
     }
     
-    func hide(){
+    func hide(at position : CGPoint){
         if !isVisible { return }
         
         charNode.run(SKAction.moveBy(x: 0, y: -80, duration: 0.05))
         isVisible = false
+        
+        //showParticles(particleName: "BokehParticles",at : position)
     }
     
-    func hit(){
+    func hit(at position : CGPoint){
         isHit = true
+        
+        showParticles(particleName: "SmokeParticles", at : position)
         
         let delay = SKAction.wait(forDuration: 0.25)
         let hide = SKAction.moveBy(x: 0, y: -80, duration: 0.25)
@@ -76,5 +83,12 @@ class WhackSlot: SKNode {
         }
         let sequence = SKAction.sequence([delay,hide,notVisible])
         charNode.run(sequence)
+    }
+    
+    func showParticles(particleName : String, at position : CGPoint){
+        if let particles = SKEmitterNode(fileNamed: particleName){
+            particles.position = position
+            addChild(particles)
+        }
     }
 }
