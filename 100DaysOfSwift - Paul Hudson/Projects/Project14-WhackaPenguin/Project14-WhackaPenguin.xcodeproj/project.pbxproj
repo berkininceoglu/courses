@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11780535273C5D1E005E91FE /* whackBad.caf in Resources */ = {isa = PBXBuildFile; fileRef = 11D41934273C45B3000148D2 /* whackBad.caf */; };
+		11780536273C5D20005E91FE /* whack.caf in Resources */ = {isa = PBXBuildFile; fileRef = 11D41933273C45B3000148D2 /* whack.caf */; };
 		11D4191D273C44F4000148D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D4191C273C44F4000148D2 /* AppDelegate.swift */; };
 		11D4191F273C44F4000148D2 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 11D4191E273C44F4000148D2 /* GameScene.sks */; };
 		11D41923273C44F4000148D2 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D41922273C44F4000148D2 /* GameScene.swift */; };
@@ -133,10 +135,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11780535273C5D1E005E91FE /* whackBad.caf in Resources */,
 				11D41928273C44F4000148D2 /* Main.storyboard in Resources */,
 				11D4191F273C44F4000148D2 /* GameScene.sks in Resources */,
 				11D4192A273C44FE000148D2 /* Assets.xcassets in Resources */,
 				11D4192D273C44FE000148D2 /* LaunchScreen.storyboard in Resources */,
+				11780536273C5D20005E91FE /* whack.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
