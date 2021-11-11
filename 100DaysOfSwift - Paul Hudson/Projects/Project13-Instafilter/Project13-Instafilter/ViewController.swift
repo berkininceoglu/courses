@@ -89,6 +89,14 @@ class ViewController: UIViewController,
         dismiss(animated: true)
         currentImage = image
         imageView.image = currentImage
+        imageView.alpha = 0.1
+        UIView.animateKeyframes(withDuration: 1, delay: 0, options: [], animations: {
+            self.imageView.alpha = 1.0
+        }){ finished in
+            
+        }
+        
+        
         
         let beginImage = CIImage(image: currentImage)
         currentFilter.setValue(beginImage, forKey: kCIInputImageKey)
