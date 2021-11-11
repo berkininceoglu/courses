@@ -61,10 +61,14 @@ class ViewController: UIViewController {
         let questionLimit: Int = 10
         questionsAnswered += 1
         
+        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 2, initialSpringVelocity: 5, options: [], animations: {
+            sender.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+        }) { finished in
+            sender.transform = CGAffineTransform(scaleX: 1, y: 1)
+        }
+        
         checkAnswer(tag: sender.tag)
         if(questionsAnswered == questionLimit){
-            
-            
             if(score > highScore){
                 let ac = UIAlertController(title: title, message: "You have beaten your high score: \(highScore) with \(score) points.", preferredStyle: .alert)
                 ac.addAction(UIAlertAction(title: "Restart", style: .default, handler: restartGame(action:)))
@@ -79,12 +83,10 @@ class ViewController: UIViewController {
             
         }
         
-        print(questionsAnswered)
-        print(score)
-        
         //let ac = UIAlertController(title: title, message: "Your score is \(score).", preferredStyle: .alert)
         //ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
         //present(ac,animated: true)
+        
         askQuestion(action: UIAlertAction())
         
     }
