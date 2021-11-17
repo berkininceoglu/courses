@@ -30,7 +30,36 @@ class ViewController: UIViewController, MKMapViewDelegate {
         let istanbul = Capital(title: "Istanbul", coordinate: CLLocationCoordinate2D(latitude: 41.015137, longitude: 28.979530), info: "Where amazing happens!")
         
         mapView.addAnnotations([london,oslo,paris,rome,washington,istanbul])
+                
+        let ac = UIAlertController(title: "Map Style", message: "Choose a view map type!", preferredStyle: .actionSheet)
+        ac.addAction(UIAlertAction(title: "Satellite", style: .default, handler: setMapType))
+        ac.addAction(UIAlertAction(title: "Hybrid", style: .default, handler: setMapType))
+        ac.addAction(UIAlertAction(title: "SatelliteFlyOver", style: .default, handler: setMapType))
+        ac.addAction(UIAlertAction(title: "HybridFlyOver", style: .default, handler: setMapType))
+        ac.addAction(UIAlertAction(title: "MutedStandard", style: .default, handler: setMapType))
+        ac.addAction(UIAlertAction(title: "Standard", style: .default, handler: setMapType))
+        present(ac, animated: true)
     }
+    
+    func setMapType(action: UIAlertAction){
+        switch action.title {
+        case "Satellite":
+            mapView.mapType = .satellite
+        case "Hybrid":
+            mapView.mapType = .hybrid
+        case "SatelliteFlyOver":
+            mapView.mapType = .satelliteFlyover
+        case "HybridFlyOver":
+            mapView.mapType = .hybridFlyover
+        case "MutedStandard":
+            mapView.mapType = .mutedStandard
+        case "Standard":
+            mapView.mapType = .standard
+        default:
+            mapView.mapType = .standard
+        }
+        
+        }
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         // 1
