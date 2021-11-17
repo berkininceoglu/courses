@@ -7,14 +7,20 @@
 
 import UIKit
 import MapKit
+import WebKit
 
-class ViewController: UIViewController, MKMapViewDelegate {
+
+class ViewController: UIViewController, MKMapViewDelegate, WKNavigationDelegate{
     @IBOutlet weak var mapView: MKMapView!
+    var webView: WKWebView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         mapView.delegate = self
+        webView = WKWebView()
+        webView.navigationDelegate = self
+           
         // Do any additional setup after loading the view.
         
         let london = Capital(title: "London", coordinate: CLLocationCoordinate2D(latitude: 51.50722, longitude: -0.175), info: "Home to the 2012 Summer Olympics")
@@ -93,9 +99,15 @@ class ViewController: UIViewController, MKMapViewDelegate {
         let placeName = capital.title
         let placeInfo = capital.info
 
-        let ac = UIAlertController(title: placeName, message: placeInfo, preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .default))
-        present(ac, animated: true)
+        
+        //let ac = UIAlertController(title: placeName, message: placeInfo, preferredStyle: .alert)
+        //ac.addAction(UIAlertAction(title: "OK", style: .default))
+        //present(ac, animated: true)
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "webView") as? WebViewController{
+            vc.paramUrl = "https://wikipedia.org/wiki/" + placeName!
+                    navigationController?.pushViewController(vc, animated: true)
+                }
+        
     }
     
 
