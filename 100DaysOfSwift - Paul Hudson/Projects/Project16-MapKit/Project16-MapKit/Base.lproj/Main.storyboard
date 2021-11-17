@@ -25,6 +25,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="cSU-UC-i2k"/>
+                    <connections>
+                        <outlet property="mapView" destination="khC-82-qs2" id="h81-gH-lAE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
