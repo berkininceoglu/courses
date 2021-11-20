@@ -107,13 +107,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.position = location
     }
     
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        endGame()
+    }
+    
     func didBegin(_ contact: SKPhysicsContact) {
+        endGame()
+    }
+    
+    func endGame(){
         let explosion = SKEmitterNode(fileNamed: "explosion")!
         explosion.position = player.position
         addChild(explosion)
         
         player.removeFromParent()
         isGameOver = true
-        
     }
 }
