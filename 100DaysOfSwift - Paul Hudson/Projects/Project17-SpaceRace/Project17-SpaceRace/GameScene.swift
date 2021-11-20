@@ -15,6 +15,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var enemies = ["ball", "hammer", "tv"]
     var gameTimer: Timer?
     var isGameOver = false
+    var enemyCounter = 0
+    var enemyTimer = 1.0
     
     var score = 0 {
         didSet{
@@ -48,11 +50,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         physicsWorld.contactDelegate = self
         
-        gameTimer = Timer.scheduledTimer(timeInterval: 0.35, target: self, selector: #selector(createEnemy), userInfo: nil, repeats: true)
+        gameTimer = Timer.scheduledTimer(timeInterval: enemyTimer, target: self, selector: #selector(createEnemy), userInfo: nil, repeats: true)
         
     }
     
     @objc func createEnemy(){
+        enemyCounter += 1
+        if(enemyCounter % 20 == 0 && enemyTimer > 0.1){
+            enemyTimer -= 0.1
+            print(enemyTimer)
+            gameTimer?.invalidate()
+            gameTimer = Timer.scheduledTimer(timeInterval: enemyTimer, target: self, selector: #selector(createEnemy), userInfo: nil, repeats: true)
+        }
         if(!isGameOver){
             guard let enemy = enemies.randomElement() else { return }
             
