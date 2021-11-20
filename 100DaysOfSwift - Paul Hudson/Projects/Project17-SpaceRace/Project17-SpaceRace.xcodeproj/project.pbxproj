@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		113A7B52274986CC00B5FC7B /* starfield.sks in Resources */ = {isa = PBXBuildFile; fileRef = 113A7B50274986CB00B5FC7B /* starfield.sks */; };
+		113A7B53274986CC00B5FC7B /* explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 113A7B51274986CC00B5FC7B /* explosion.sks */; };
 		118AA2C12746F41900F1FA14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118AA2C02746F41900F1FA14 /* AppDelegate.swift */; };
 		118AA2C32746F41900F1FA14 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 118AA2C22746F41900F1FA14 /* GameScene.sks */; };
 		118AA2C72746F41900F1FA14 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118AA2C62746F41900F1FA14 /* GameScene.swift */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		113A7B50274986CB00B5FC7B /* starfield.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = starfield.sks; path = "../../../../../../../Downloads/twostraws HackingWithSwift main Classic-project17-files_Content/starfield.sks"; sourceTree = "<group>"; };
+		113A7B51274986CC00B5FC7B /* explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = explosion.sks; path = "../../../../../../../Downloads/twostraws HackingWithSwift main Classic-project17-files_Content/explosion.sks"; sourceTree = "<group>"; };
 		118AA2BD2746F41900F1FA14 /* Project17-SpaceRace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project17-SpaceRace.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		118AA2C02746F41900F1FA14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		118AA2C22746F41900F1FA14 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -64,6 +68,8 @@
 				118AA2CA2746F41900F1FA14 /* Main.storyboard */,
 				118AA2CD2746F42200F1FA14 /* Assets.xcassets */,
 				118AA2CF2746F42200F1FA14 /* LaunchScreen.storyboard */,
+				113A7B51274986CC00B5FC7B /* explosion.sks */,
+				113A7B50274986CB00B5FC7B /* starfield.sks */,
 			);
 			path = "Project17-SpaceRace";
 			sourceTree = "<group>";
@@ -129,6 +135,8 @@
 				118AA2CC2746F41900F1FA14 /* Main.storyboard in Resources */,
 				118AA2C32746F41900F1FA14 /* GameScene.sks in Resources */,
 				118AA2CE2746F42200F1FA14 /* Assets.xcassets in Resources */,
+				113A7B53274986CC00B5FC7B /* explosion.sks in Resources */,
+				113A7B52274986CC00B5FC7B /* starfield.sks in Resources */,
 				118AA2D12746F42200F1FA14 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
