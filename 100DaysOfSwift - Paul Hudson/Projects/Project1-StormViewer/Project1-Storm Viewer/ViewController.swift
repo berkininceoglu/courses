@@ -33,6 +33,7 @@ class ViewController: UITableViewController {
             }
         }
         pictures.sort()
+        pictures.append("")
         
         DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -51,8 +52,8 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? //next line is for exception breakpoint
-        if let vc = storyboard?.instantiateViewController(withIdentifier: "Bad") as? DetailViewController{
+        //if let vc = storyboard?.instantiateViewController(withIdentifier: "Bad") as? //this line is for exception breakpoint
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController{
             vc.selectedImage = pictures[indexPath.row]
             vc.orderCount = indexPath.row
             vc.totalCount = pictures.count

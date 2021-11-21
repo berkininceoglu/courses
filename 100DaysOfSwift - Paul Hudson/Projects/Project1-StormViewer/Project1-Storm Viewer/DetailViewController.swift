@@ -20,6 +20,9 @@ class DetailViewController: UIViewController {
         title = "\(orderCount+1) of \(totalCount)"
         navigationItem.largeTitleDisplayMode = .never
         
+        assert(selectedImage != nil, "No image selected!")
+        assert(selectedImage != "", "Empty imagename!")
+        
         if let imageToLoad = selectedImage{
             imageView.image = UIImage(named:imageToLoad)
         }
