@@ -16,6 +16,14 @@ class ViewController: UIViewController {
         print("Some text with terminator :* ", "Next text", terminator: "*")
         
         //assert(1 == 2, "Math failure") //Never runs in live app
+        
+        for i in 1...100{
+            print("Got number \(i).")
+            
+            //Shortcuts
+            //FN+F6 next line
+            //CTRL+COMMAND+Y next debug point
+        }
     }
 
 
