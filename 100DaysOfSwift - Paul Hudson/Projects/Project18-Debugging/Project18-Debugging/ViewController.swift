@@ -14,6 +14,8 @@ class ViewController: UIViewController {
         
         print(1,2,3,4,5,separator: "-")
         print("Some text with terminator :* ", "Next text", terminator: "*")
+        
+        //assert(1 == 2, "Math failure") //Never runs in live app
     }
 
 
