@@ -8,12 +8,15 @@
 import UIKit
 
 class ViewController: UITableViewController {
-    
     var countries = [Country]()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        var country = Country(name: "A")
+        for _ in 0...4{
+            countries.append(country)
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

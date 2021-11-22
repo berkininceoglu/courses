@@ -8,13 +8,6 @@
 
 import Foundation
 
-
-struct Countries : Codable {
-    var results: [Country]
-}
-
-struct Country : Codable{
-    var title: String
-    var body: String
-    var signatureCount: Int
+struct Country {
+    var name: String
 }
