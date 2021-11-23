@@ -14,6 +14,7 @@
 		113A7B8C274C321000B5FC7B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 113A7B8B274C321000B5FC7B /* Assets.xcassets */; };
 		113A7B8F274C321000B5FC7B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 113A7B8D274C321000B5FC7B /* LaunchScreen.storyboard */; };
 		113A7B97274C353400B5FC7B /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A7B96274C353400B5FC7B /* Country.swift */; };
+		113A7BC5274D711300B5FC7B /* country-capital.json in Resources */ = {isa = PBXBuildFile; fileRef = 113A7BC4274D711300B5FC7B /* country-capital.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		113A7B8E274C321000B5FC7B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		113A7B90274C321000B5FC7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		113A7B96274C353400B5FC7B /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
+		113A7BC4274D711300B5FC7B /* country-capital.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "country-capital.json"; path = "../../../../../../country-capital.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				113A7B8B274C321000B5FC7B /* Assets.xcassets */,
 				113A7B8D274C321000B5FC7B /* LaunchScreen.storyboard */,
 				113A7B90274C321000B5FC7B /* Info.plist */,
+				113A7BC4274D711300B5FC7B /* country-capital.json */,
 			);
 			path = "Day59-Challenge";
 			sourceTree = "<group>";
@@ -131,6 +134,7 @@
 				113A7B8F274C321000B5FC7B /* LaunchScreen.storyboard in Resources */,
 				113A7B8C274C321000B5FC7B /* Assets.xcassets in Resources */,
 				113A7B8A274C320700B5FC7B /* Main.storyboard in Resources */,
+				113A7BC5274D711300B5FC7B /* country-capital.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
