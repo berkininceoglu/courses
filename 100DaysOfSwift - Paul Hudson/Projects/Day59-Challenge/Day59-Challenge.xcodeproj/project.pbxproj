@@ -15,6 +15,7 @@
 		113A7B8F274C321000B5FC7B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 113A7B8D274C321000B5FC7B /* LaunchScreen.storyboard */; };
 		113A7B97274C353400B5FC7B /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A7B96274C353400B5FC7B /* Country.swift */; };
 		113A7BC5274D711300B5FC7B /* country-capital.json in Resources */ = {isa = PBXBuildFile; fileRef = 113A7BC4274D711300B5FC7B /* country-capital.json */; };
+		113A7BC7274EAD1300B5FC7B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113A7BC6274EAD1300B5FC7B /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		113A7B90274C321000B5FC7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		113A7B96274C353400B5FC7B /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		113A7BC4274D711300B5FC7B /* country-capital.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "country-capital.json"; path = "../../../../../../country-capital.json"; sourceTree = "<group>"; };
+		113A7BC6274EAD1300B5FC7B /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 			children = (
 				113A7B82274C320700B5FC7B /* AppDelegate.swift */,
 				113A7B84274C320700B5FC7B /* SceneDelegate.swift */,
+				113A7BC6274EAD1300B5FC7B /* DetailViewController.swift */,
 				113A7B86274C320700B5FC7B /* ViewController.swift */,
 				113A7B96274C353400B5FC7B /* Country.swift */,
 				113A7B88274C320700B5FC7B /* Main.storyboard */,
@@ -147,6 +150,7 @@
 			files = (
 				113A7B97274C353400B5FC7B /* Country.swift in Sources */,
 				113A7B87274C320700B5FC7B /* ViewController.swift in Sources */,
+				113A7BC7274EAD1300B5FC7B /* DetailViewController.swift in Sources */,
 				113A7B83274C320700B5FC7B /* AppDelegate.swift in Sources */,
 				113A7B85274C320700B5FC7B /* SceneDelegate.swift in Sources */,
 			);

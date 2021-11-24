@@ -49,13 +49,18 @@ class ViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Country", for: indexPath)
         cell.textLabel?.text = countries[indexPath.row].name
+        cell.accessoryType = .detailDisclosureButton
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let ac = UIAlertController(title: countries[indexPath.row].name, message: countries[indexPath.row].capital, preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        present(ac, animated: true)
+        
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController{
+            vc.countryName = countries[indexPath.row].name
+            vc.capital = countries[indexPath.row].capital
+            navigationController?.pushViewController(vc, animated: true)
+            
+        }
     }
     
     
