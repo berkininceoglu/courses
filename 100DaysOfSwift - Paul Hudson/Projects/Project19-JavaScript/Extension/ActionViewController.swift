@@ -16,13 +16,16 @@ class ActionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        if let inputItem = extensionContext?.inputItems.first as? NSExtensionItem{
-            if let itemProvider = inputItem.attachments?.first {
-                itemProvider.loadItem(forTypeIdentifier: kUTTypePropertyList as String){
-                    [weak self] (dict, error) in
-                }
-            }
-        }
+        if let inputItem = extensionContext?.inputItems.first as? NSExtensionItem {
+               if let itemProvider = inputItem.attachments?.first {
+                   itemProvider.loadItem(forTypeIdentifier: kUTTypePropertyList as String) { [weak self] (dict, error) in
+
+                       guard let itemDictionary = dict as? NSDictionary else { return }
+                       guard let javaScriptValues = itemDictionary[NSExtensionJavaScriptPreprocessingResultsKey] as? NSDictionary else { return }
+                       print(javaScriptValues)
+                   }
+               }
+           }
     }
 
     @IBAction func done() {

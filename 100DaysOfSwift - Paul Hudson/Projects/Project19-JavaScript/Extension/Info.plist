@@ -10,9 +10,11 @@
 			<string>Action</string>
 			<key>NSExtensionActivationRule</key>
 			<dict>
-				<key>NSExtensionActivationSupportsWebPageWithMaxCount</key>
-				<string>1</string>
-			</dict>
+    <key>NSExtensionActivationSupportsWebPageWithMaxCount</key>
+    <integer>1</integer>
+    <key>NSExtensionActivationSupportsWebURLWithMaxCount</key>
+    <integer>1</integer>
+</dict>
 			<key>NSExtensionServiceAllowsFinderPreviewItem</key>
 			<true/>
 			<key>NSExtensionServiceAllowsTouchBarItem</key>
